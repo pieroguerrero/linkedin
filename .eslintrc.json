@@ -1,6 +1,7 @@
 {
   "env": {
     "browser": true,
+    "node": true,
     "es2021": true
   },
   "extends": ["eslint:recommended", "plugin:react/recommended"],
@@ -15,6 +16,7 @@
   "rules": {
     "no-console": "off",
     "prefer-template": "off",
-    "quotes": ["error", "double"]
+    "quotes": ["error", "double"],
+    "react/prop-types": "off"
   }
 }

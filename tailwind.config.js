@@ -5,10 +5,15 @@ module.exports = {
     extend: {
       colors: {
         //Color converter: https://convertingcolors.com/rgb-color-67_56_202.html?search=RGB(67,56,202)
-        color_primary: "#006BFE",
-        color_secondary: "#8BC9C8",
+        "color-blue": "#0077B5",
+        "color-text": "#313335",
+        "color-text-low-emphasis": "#595C5F",
+        "color-gray-ligth": "#CACCCE",
+      },
+      fontFamily: {
+        "source-sans": ["Source Sans", "sans-serif"],
       },
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/forms")],
 };
