@@ -1,5 +1,5 @@
 import React from "react";
-import { ButtonImageText } from "../ButtonImageText";
+import { ButtonImageText } from "./components/ButtonImageText";
 
 const MenuBar = () => {
   return (

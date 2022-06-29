@@ -6,6 +6,7 @@ const Constants = (() => {
     PortalDivId: "div-portal",
     BaseURLPath: "/linkedin/",
     ClassPrimaryButtonBorder: "button-primary-w-border",
+    PopUpPortalDivId: "div-popup-portal",
   };
 })();
 

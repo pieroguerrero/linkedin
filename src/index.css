@@ -10,10 +10,6 @@
   }
 }
 
-.button-primary-w-border {
-  @apply rounded-lg border border-color-blue;
-}
-
 .button-gray-with-svg {
   @apply flex items-center flex-row sm:flex-col gap-1.5 sm:gap-0 h-[52px] text-color-text-low-emphasis hover:text-color-text w-fit sm:w-[80px] ml-6 sm:ml-0;
 }

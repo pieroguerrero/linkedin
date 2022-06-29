@@ -8,6 +8,13 @@
 @font-face {
   font-family: "Source Sans";
   font-style: normal;
+  font-weight: bold;
+  src: url("./assets/fonts/source-sans/SourceSansPro-Bold.ttf");
+}
+
+@font-face {
+  font-family: "Source Sans";
+  font-style: normal;
   font-weight: 600;
   src: url("./assets/fonts/source-sans/SourceSansPro-Semibold.ttf");
 }
