@@ -1,11 +1,22 @@
 import React from "react";
-import { RoundedTextButton } from "../../../../components/TextButton";
+import { RoundedTextButton } from "../../../../components/form-controls/RoundedTextButton";
+import { showCustomTextToast } from "../../../../utilities";
 import { HamburguerMenu } from "./components/HamburguerMenu";
 import { MenuBar } from "./components/MenuBar";
 
 const LandingHeader = () => {
-  const onClickJoinNow = () => {};
-  const onClicksignIn = () => {};
+  const onClickJoinNow = () => {
+    showCustomTextToast(
+      "Email and Password login not implemented yet. Please continue with Google or as a Guest options.",
+      4
+    );
+  };
+  const onClicksignIn = () => {
+    showCustomTextToast(
+      "Email and Password login not implemented yet. Please continue with Google or as a Guest options.",
+      4
+    );
+  };
 
   return (
     <header className="w-full flex justify-center">
@@ -71,13 +82,13 @@ const LandingHeader = () => {
           </div>
           <RoundedTextButton
             strColor="gray"
-            strText="Join Now"
+            strText="Join now"
             booBorder={false}
             handleClick={onClickJoinNow}
           />
           <RoundedTextButton
             strColor="blue"
-            strText="Sign In"
+            strText="Sign in"
             booBorder={true}
             handleClick={onClicksignIn}
           />
@@ -85,7 +96,7 @@ const LandingHeader = () => {
         <div className="flex items-baseline justify-center sm:hidden">
           <RoundedTextButton
             strColor="blue"
-            strText="Join Now"
+            strText="Join now"
             booBorder={true}
             handleClick={onClicksignIn}
           />

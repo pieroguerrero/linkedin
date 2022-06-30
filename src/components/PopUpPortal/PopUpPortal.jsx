@@ -6,10 +6,9 @@ import { Constants } from "../../utilities/";
  *
  * @param {object} props
  * @param {JSX.Element} props.children
- * @param {'shade' | 'white'} props.strBackground
  * @returns {JSX.Element}
  */
-const PopUpPortal = ({ children, strBackground }) => {
+const PopUpPortal = ({ children }) => {
   useLayoutEffect(() => {
     console.log("assigning overflow");
     document.querySelector("body")?.classList.add("overflow-hidden");
@@ -20,20 +19,8 @@ const PopUpPortal = ({ children, strBackground }) => {
 
   const divPopUpPortal = document.getElementById(Constants.PopUpPortalDivId);
 
-  const classBackground = (() => {
-    if (strBackground === "shade") {
-      return " bg-gray-600 bg-opacity-50";
-    }
-
-    return " bg-white";
-  })();
-
   return ReactDOM.createPortal(
-    <div
-      className={
-        "absolute top-0 left-0 h-screen w-screen z-20" + classBackground
-      }
-    >
+    <div className="absolute top-0 left-0 h-screen w-screen z-20">
       {children}
     </div>,
     divPopUpPortal

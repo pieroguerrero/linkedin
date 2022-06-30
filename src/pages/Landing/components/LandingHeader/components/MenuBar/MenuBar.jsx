@@ -1,11 +1,31 @@
 import React from "react";
 import { ButtonImageText } from "./components/ButtonImageText";
+import { showNotAvailableToast } from "../../../../../../utilities";
 
 const MenuBar = () => {
+  const handleClickDiscover = () => {
+    showNotAvailableToast();
+  };
+
+  const handleClickPeople = () => {
+    showNotAvailableToast();
+  };
+
+  const handleClickLearning = () => {
+    showNotAvailableToast();
+  };
+
+  const handleClickJobs = () => {
+    showNotAvailableToast();
+  };
+
   return (
-    <ul className="flex flex-col sm:flex-row gap-1 sm:items-center w-full">
+    <ul className="flex flex-col sm:flex-row gap-0.5 sm:gap-1 sm:items-center w-full">
       <li>
-        <ButtonImageText strTitle={"Discover"}>
+        <ButtonImageText
+          strTitle={"Discover"}
+          handleClick={handleClickDiscover}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="21"
@@ -21,7 +41,7 @@ const MenuBar = () => {
         </ButtonImageText>
       </li>
       <li>
-        <ButtonImageText strTitle="People">
+        <ButtonImageText strTitle="People" handleClick={handleClickPeople}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="18"
@@ -37,7 +57,7 @@ const MenuBar = () => {
         </ButtonImageText>
       </li>
       <li>
-        <ButtonImageText strTitle="Learning">
+        <ButtonImageText strTitle="Learning" handleClick={handleClickLearning}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -75,7 +95,7 @@ const MenuBar = () => {
         </ButtonImageText>
       </li>
       <li>
-        <ButtonImageText strTitle="Jobs">
+        <ButtonImageText strTitle="Jobs" handleClick={handleClickJobs}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="20"
