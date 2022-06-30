@@ -11,8 +11,7 @@ const Section = ({ strTitle, strSubTitle, children, strColor }) => {
   return (
     <section
       className={
-        "flex flex-col flex-nowrap items-center justify-center sm:flex-row w-full" +
-        " py-14 sm:py-[60px] px-4 sm:px-0 " +
+        "w-full flex justify-center " +
         (strColor === "ligth-gray"
           ? "bg-[#F3F2F0]"
           : strColor === "white"
@@ -22,15 +21,24 @@ const Section = ({ strTitle, strSubTitle, children, strColor }) => {
           : "")
       }
     >
-      <p className=" mb-6 sm:mb-0 text-5xl font-light text-color-text">
-        {strTitle}
-      </p>
-      <div className="flex flex-col gap-1">
-        <p className=" uppercase text-color-text font-semibold text-xl">
-          {strSubTitle}
+      <div className="flex flex-col gap-8 sm:gap-[72px] max-w-6xl flex-nowrap  sm:flex-row w-full py-14 sm:py-[60px] px-4">
+        <p
+          className={
+            " mb-0 text-[34px] leading-10 sm:w-[408px] sm:leading-[60px] sm:text-[50px] font-normal sm:font-light " +
+            (strColor === "ligth-orange"
+              ? "text-[#b24020]"
+              : "text-color-text-darker")
+          }
+        >
+          {strTitle}
         </p>
-        <div className="flex flex-wrap gap-x-1 gap-y-2 text-[19px] sm:text-[21px] font-bold">
-          {children}
+        <div className="flex flex-col gap-4 max-w-[343px] sm:max-w-[640px]">
+          <p className=" uppercase text-color-text font-bold text-[17px]">
+            {strSubTitle}
+          </p>
+          <div className="flex flex-wrap gap-x-[6px] gap-y-3 text-[19px] sm:text-[21px] font-bold">
+            {children}
+          </div>
         </div>
       </div>
     </section>

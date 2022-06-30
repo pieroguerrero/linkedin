@@ -39,7 +39,7 @@ const RoundedTextButton = ({
       onClick={handleClick}
       className={
         "flex justify-center items-center py-3 px-6 font-bold rounded-[28px] " +
-        (booFullWidth ? " w-full" : "") +
+        (booFullWidth ? " w-full" : "w-fit") +
         (booBorder ? " border border-solid " : "") +
         strClassName
       }

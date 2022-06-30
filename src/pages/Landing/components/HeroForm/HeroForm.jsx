@@ -10,8 +10,8 @@ import {
 const HeroForm = () => {
   const handleAgreeAndJoinClick = () => {
     showCustomTextToast(
-      "Email and Password login not implemented yet. Please continue with Google or as a Guest options.",
-      4
+      "Email and Password login not implemented yet. Please continue with Google or Guest options.",
+      5
     );
   };
 

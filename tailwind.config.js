@@ -7,6 +7,7 @@ module.exports = {
       colors: {
         //Color converter: https://convertingcolors.com/rgb-color-67_56_202.html?search=RGB(67,56,202)
         "color-blue": "#0A66C2",
+        "color-text-darker": "rgb(0,0,0,0.9)",
         "color-text": "rgb(0,0,0,0.6)",
         "color-text-low-emphasis": "#595C5F",
         "color-gray-medium": "#86888A",
@@ -18,6 +19,9 @@ module.exports = {
       },
       fontFamily: {
         "source-sans": ["Source Sans", "sans-serif"],
+      },
+      backgroundImage: {
+        "lp-bottom-pattern": "url('./assets/images/bottom-bg.png')",
       },
     },
   },

@@ -3,7 +3,7 @@ import { HeroForm } from "../HeroForm/";
 
 const Hero = () => {
   return (
-    <section className="flex flex-col sm:flex-row px-4 sm:px-0 sm:pt-[47px] pt-[24px]">
+    <section className="flex flex-col max-w-6xl sm:flex-row px-4 sm:px-0 sm:pt-[47px] pt-[24px]">
       {/* left side */}
       <div className=" sm:w-[55%]">
         <HeroForm />

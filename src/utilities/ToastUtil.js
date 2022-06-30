@@ -45,4 +45,26 @@ const showCustomTextToast = (strMessage, fltDuration = 1.5) => {
   });
 };
 
-export { showNotAvailableToast, showCustomTextToast };
+/**
+ * Shows a Toast indicating that the page is just a clone of the original Linkedin.
+ * @returns {void}
+ */
+const showOveralWarning = () => {
+  toast.error(
+    "This page is not the original Linkedin, it was created for personal purposes. Please, do not enter valid passwords.",
+    {
+      position: "top-center",
+      autoClose: 11000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      pauseOnFocusLoss: false,
+      draggable: true,
+      progress: undefined,
+      rtl: false,
+      theme: "light",
+    }
+  );
+};
+
+export { showNotAvailableToast, showCustomTextToast, showOveralWarning };
