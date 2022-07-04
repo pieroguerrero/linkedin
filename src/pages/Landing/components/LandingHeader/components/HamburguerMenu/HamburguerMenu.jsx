@@ -15,11 +15,11 @@ const HamburguerMenu = () => {
       <button
         type="button"
         onClick={handleClick}
-        className="flex items-center justify-center cursor-pointer"
+        className="flex items-center justify-center gap-1 cursor-pointer"
         aria-expanded="false"
       >
         <span
-          className="flex items-center h-3 w-1.5 text-color-blue mr-1"
+          className="flex items-center h-3 w-3 text-color-blue mr-1"
           aria-hidden="true"
         >
           <svg
@@ -41,7 +41,7 @@ const HamburguerMenu = () => {
           Menu
         </span>
       </button>
-      {popUp ? <SideBarMenu handleClose={handleClose}></SideBarMenu> : null}
+      {popUp ? <SideBarMenu handleClose={handleClose} /> : null}
     </>
   );
 };

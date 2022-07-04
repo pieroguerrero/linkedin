@@ -20,7 +20,7 @@ const LandingHeader = () => {
 
   return (
     <header className="w-full flex justify-center">
-      <nav className="flex-1 pt-3 pb-2 flex items-center justify-between relative flex-nowrap w-full max-w-6xl px-4 sm:px-0">
+      <nav className="flex-1 pt-3 pb-2 flex items-center justify-between relative flex-nowrap w-full max-w-6xl px-4">
         {/* HorizontalMenu */}
         {/* Hambuger Menu */}
         <div className="sm:hidden">

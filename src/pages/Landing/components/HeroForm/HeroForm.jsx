@@ -2,6 +2,7 @@ import {
   RoundedTextButton,
   ButtonRounded,
 } from "../../../../components/form-controls/";
+import { signInUser, isNewUser } from "../../../../services/serviceUserAuth";
 import {
   showCustomTextToast,
   showNotAvailableToast,
@@ -15,7 +16,11 @@ const HeroForm = () => {
     );
   };
 
-  const handleJoinGoogleClick = () => {};
+  const handleJoinGoogleClick = async () => {
+    const objUserCredential = await signInUser();
+    if (isNewUser(objUserCredential)) {
+    }
+  };
 
   const handleGuestClick = () => {};
 

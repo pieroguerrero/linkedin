@@ -17,7 +17,6 @@ const SideBarMenu = ({ handleClose }) => {
     <PopUpPortal>
       <>
         <div className=" w-full h-full flex flex-col bg-white">
-          {/* //TODO: finish the popup like the one in linkedin */}
           <section>
             <div className="flex flex-col justify-between border-color-border-faint border-none pt-3 px-6 pb-4">
               <div className="flex justify-end">
