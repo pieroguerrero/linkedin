@@ -1,14 +1,22 @@
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import {
   RoundedTextButton,
   ButtonRounded,
 } from "../../../../components/form-controls/";
+import { setLoggedUser } from "../../../../redux/states/logedUserSlice";
+import { createUser, getUser } from "../../../../services/serviceUser";
 import { signInUser, isNewUser } from "../../../../services/serviceUserAuth";
 import {
+  AuthenticationMethods,
+  NavigationPaths,
   showCustomTextToast,
   showNotAvailableToast,
 } from "../../../../utilities";
 
 const HeroForm = () => {
+  const objNavigate = useNavigate();
+  const dispatch = useDispatch();
   const handleAgreeAndJoinClick = () => {
     showCustomTextToast(
       "Email and Password login not implemented yet. Please continue with Google or Guest options.",
@@ -16,10 +24,38 @@ const HeroForm = () => {
     );
   };
 
-  const handleJoinGoogleClick = async () => {
+  const handleAsyncJoinGoogle = async () => {
     const objUserCredential = await signInUser();
-    if (isNewUser(objUserCredential)) {
+
+    if (objUserCredential) {
+      const objUser = objUserCredential.user;
+
+      if (isNewUser(objUserCredential)) {
+        const objCreatedUser = await createUser(
+          objUser.uid,
+          objUser.email ?? "",
+          objUser.displayName ?? "Dwight Schrute",
+          AuthenticationMethods.FIREBASE_GOOGLE,
+          objUser.photoURL ?? ""
+        );
+
+        if (objCreatedUser) {
+          dispatch(setLoggedUser(objCreatedUser));
+          objNavigate(NavigationPaths.FEED);
+        }
+      } else {
+        const objExistingUser = await getUser(objUser.uid);
+        if (objExistingUser) {
+          dispatch(setLoggedUser(objExistingUser));
+          objNavigate(NavigationPaths.FEED);
+        }
+      }
     }
+  };
+
+  const handleJoinGoogleClick = (e) => {
+    e.preventDefault();
+    handleAsyncJoinGoogle();
   };
 
   const handleGuestClick = () => {};

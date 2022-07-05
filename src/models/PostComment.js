@@ -13,6 +13,7 @@
  * @property {number} intReactionCount
  * @property {number} intReplyCount
  * @property {Date} dtCreatedOn
+ * @property {boolean} booActive
  */
 
 /**
@@ -26,6 +27,7 @@
  * @param {number} intReactionCount
  * @param {number} intReplyCount
  * @param {Date} dtCreatedOn
+ * @param {boolean} booActive
  * @returns {PostComment}
  */
 function shapePostComment(
@@ -37,7 +39,8 @@ function shapePostComment(
   strMediaURL,
   intReactionCount,
   intReplyCount,
-  dtCreatedOn
+  dtCreatedOn,
+  booActive
 ) {
   return {
     strPostCommentId,
@@ -49,6 +52,7 @@ function shapePostComment(
     intReactionCount,
     intReplyCount,
     dtCreatedOn,
+    booActive,
   };
 }
 

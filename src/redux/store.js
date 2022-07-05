@@ -3,9 +3,16 @@ import logedUserReducer from "./states/logedUserSlice";
 
 const store = configureStore({
   reducer: {
-    counter: logedUserReducer,
+    loggedUser: logedUserReducer,
     //another Reducer
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActionPaths: ["payload.dtCreatedOn"],
+        ignoredPaths: ["loggedUser.value.dtCreatedOn"],
+      }, //false
+    }),
 });
 
 /**

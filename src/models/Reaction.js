@@ -9,6 +9,7 @@
  * @property {("post"|"post-comment"|"comment-reply")} strParentType
  * @property {("like"|"celebrate"|"support"|"funny"|"love"|"insightful"|"curious")} strReactionType
  * @property {Date} dtCreatedOn
+ * @property {boolean} booActive
  */
 
 /**
@@ -18,6 +19,7 @@
  * @param {("post"|"post-comment"|"comment-reply")} strParentType
  * @param {("like"|"celebrate"|"support"|"funny"|"love"|"insightful"|"curious")} strReactionType
  * @param {Date} dtCreatedOn
+ * @param {boolean} booActive
  * @returns {Reaction}
  */
 function shapeReaction(
@@ -25,7 +27,8 @@ function shapeReaction(
   strParentId,
   strParentType,
   strReactionType,
-  dtCreatedOn
+  dtCreatedOn,
+  booActive
 ) {
   return {
     strReactionId,
@@ -33,6 +36,7 @@ function shapeReaction(
     strParentType,
     strReactionType,
     dtCreatedOn,
+    booActive,
   };
 }
 

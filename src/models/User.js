@@ -11,6 +11,7 @@
  * @property {string} strAuthMethod
  * @property {string} strProfilePicURL
  * @property {Date} dtCreatedOn
+ * @property {boolean} booActive
  */
 
 /**
@@ -21,6 +22,7 @@
  * @param {string} strAuthMethod
  * @param {string} strProfilePicURL
  * @param {Date} dtCreatedOn
+ * @param {boolean} booActive
  * @returns {User}
  */
 function shapeUser(
@@ -29,7 +31,8 @@ function shapeUser(
   strFullName,
   strAuthMethod,
   strProfilePicURL,
-  dtCreatedOn
+  dtCreatedOn,
+  booActive
 ) {
   return {
     strUserId,
@@ -38,6 +41,7 @@ function shapeUser(
     strAuthMethod,
     strProfilePicURL,
     dtCreatedOn,
+    booActive,
   };
 }
 

@@ -13,6 +13,7 @@
  * @property {("photo"|"video"|"none")} strMediaType
  * @property {string} strMediaURL
  * @property {Date} dtCreatedOn
+ * @property {boolean} booActive
  */
 
 /**
@@ -26,6 +27,7 @@
  * @param {("photo"|"video"|"none")} strMediaType
  * @param {string} strMediaURL
  * @param {Date} dtCreatedOn
+ * @param {boolean} booActive
  * @returns {Post}
  */
 function shapePost(
@@ -37,7 +39,8 @@ function shapePost(
   intCommentCount,
   strMediaType,
   strMediaURL,
-  dtCreatedOn
+  dtCreatedOn,
+  booActive
 ) {
   return {
     strPostId,
@@ -49,6 +52,7 @@ function shapePost(
     strMediaType,
     strMediaURL,
     dtCreatedOn,
+    booActive,
   };
 }
 

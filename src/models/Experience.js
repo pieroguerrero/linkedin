@@ -18,6 +18,7 @@
  * @property {string} strEndMonth
  * @property {string} strEndYear
  * @property {Date} dtCreatedOn
+ * @property {boolean} booActive
  */
 
 /**
@@ -35,6 +36,7 @@
  * @param {string} strEndMonth
  * @param {string} strEndYear
  * @param {Date} dtCreatedOn
+ * @param {boolean} booActive
  * @returns {Experience}
  */
 function shapeExperience(
@@ -51,7 +53,8 @@ function shapeExperience(
   strStartYear,
   strEndMonth,
   strEndYear,
-  dtCreatedOn
+  dtCreatedOn,
+  booActive
 ) {
   return {
     strExperienceId,
@@ -68,6 +71,7 @@ function shapeExperience(
     strEndMonth,
     strEndYear,
     dtCreatedOn,
+    booActive,
   };
 }
 

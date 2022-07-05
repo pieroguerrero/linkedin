@@ -1,15 +1,15 @@
 import { shapeUser } from "../../models/User";
 import { createSlice } from "@reduxjs/toolkit";
 
-export const EmptyUserState = shapeUser("", "", "", "", "", new Date(0));
+const EmptyUserState = shapeUser("", "", "", "", "", new Date(0), false);
 
-export const logedUserSlice = createSlice({
+const logedUserSlice = createSlice({
   name: "user",
   initialState: {
     value: EmptyUserState,
   },
   reducers: {
-    setLogedUser: (state, action) => {
+    setLoggedUser: (state, action) => {
       state.value = action.payload;
     },
     clearLogedUser: (state) => {
@@ -18,7 +18,8 @@ export const logedUserSlice = createSlice({
   },
 });
 
-export const { setLogedUser, clearLogedUser } = logedUserSlice.actions;
-
+const { setLoggedUser, clearLogedUser } = logedUserSlice.actions;
 const logedUserReducer = logedUserSlice.reducer;
+
 export default logedUserReducer;
+export { setLoggedUser, clearLogedUser, EmptyUserState, logedUserSlice };

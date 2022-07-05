@@ -26,4 +26,38 @@ const ProfileSections = Object.freeze({
   EXPERIENCE: "experience",
 });
 
-export { Reactions, ReactionParentTypes, MediaTypes, ProfileSections };
+const AuthenticationMethods = Object.freeze({
+  FIREBASE_GOOGLE: "firebase-google",
+  FIREBASE_ANONYMOUS: "firebase-anonymous",
+  FIREBASE_USERPASS: "firebase-userpass",
+});
+
+const CollectionNames = Object.freeze({
+  USERS: "users",
+  COMMENT_REPLIES: "commentreplies",
+  EDUCATIONS: "educations",
+  EXPERIENCES: "experiences",
+  LANGUAGES: "languages",
+  POSTS: "posts",
+  POST_COMMENTS: "postscomments",
+  PROFILES: "profiles",
+  REACTIONS: "reactions",
+  SKILLS: "skills",
+  VIEWS: "views",
+});
+
+const NavigationPaths = Object.freeze({
+  UNKNOWN: "*",
+  BASE: "/linkedin",
+  FEED: "feed",
+});
+
+export {
+  Reactions,
+  ReactionParentTypes,
+  MediaTypes,
+  ProfileSections,
+  AuthenticationMethods,
+  CollectionNames,
+  NavigationPaths,
+};

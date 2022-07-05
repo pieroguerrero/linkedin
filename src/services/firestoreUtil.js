@@ -1,5 +1,16 @@
 import { appDB } from "../firebase";
-import { setDoc, doc, addDoc, collection } from "firebase/firestore";
+import {
+  setDoc,
+  doc,
+  addDoc,
+  collection,
+  getDoc,
+  // eslint-disable-next-line no-unused-vars
+  QueryConstraint,
+  where,
+  query,
+  getDocs,
+} from "firebase/firestore";
 
 /**
  * Contains the basic methods to interact with a Firestore Database
@@ -20,7 +31,7 @@ const createWithId = async (objData, strId, ...arrPath) => {
     await setDoc(objDocReference, objData);
     return true;
   } catch (error) {
-    console.error("firestoreUtil.createWithId: ", error);
+    console.error("firestoreUtil.create: ", error);
     return false;
   }
 };
@@ -31,7 +42,7 @@ const createWithId = async (objData, strId, ...arrPath) => {
  * @param  {string[]} arrPath
  * @returns {Promise<string>} - Returns the Id of the recently created document
  */
-const createWithGeneratedId = async (objData, ...arrPath) => {
+const create = async (objData, ...arrPath) => {
   let docRef;
 
   try {
@@ -47,4 +58,66 @@ const createWithGeneratedId = async (objData, ...arrPath) => {
   }
 };
 
-export { createWithId, createWithGeneratedId };
+/**
+ * Selects a document by Id
+ * @param {string} strId - Id of the document to be created.
+ * @param {string[]} arrPath - Path to select the collection where the Document is located.
+ * @returns {Promise<object>}
+ */
+const selectById = async (strId, ...arrPath) => {
+  const arrFullPath = [...arrPath, strId];
+  try {
+    const docRef = doc(appDB, arrFullPath[0], ...arrFullPath.slice(1));
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      return { ...docSnap.data() };
+    } else {
+      console.warn(
+        "firestoreUtil.dbSelect: There was no document with id:",
+        strId
+      );
+    }
+  } catch (error) {
+    console.error("firestoreUtil.dbSelect:", error);
+  }
+
+  return null;
+};
+
+/**
+ * @typedef {Object} QueryClause
+ * @property {string} strType
+ * @property {string} strField
+ * @property {string} strLogicOperator
+ * @property {object} objValue
+ */
+
+/**
+ * Selects all the documents in a Collection filtered by specific constraints.
+ * @param {QueryConstraint[]} arrConstraints
+ * @param {string[]} arrPathToCollection - Path to select the collection where the Document is located.
+ * @returns {Promise<object[] | null>}
+ */
+const selectAll = async (arrConstraints, ...arrPathToCollection) => {
+  try {
+    const collectionRef =
+      arrPathToCollection.length > 1
+        ? collection(
+            appDB,
+            arrPathToCollection[0],
+            ...arrPathToCollection.slice(1)
+          )
+        : collection(appDB, arrPathToCollection[0]);
+
+    const queryDoc = query(collectionRef, ...arrConstraints);
+    const querySnapshot = await getDocs(queryDoc);
+
+    return querySnapshot.docs;
+  } catch (error) {
+    console.error("firestoreUtil.dbSelect:", error);
+    return null;
+  }
+};
+
+export { createWithId, create, selectById, selectAll, where };

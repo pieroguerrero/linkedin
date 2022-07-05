@@ -1,5 +1,4 @@
 import {
-  getAuth,
   signOut,
   GoogleAuthProvider,
   signInWithPopup,
@@ -7,6 +6,7 @@ import {
   // eslint-disable-next-line no-unused-vars
   UserCredential,
 } from "firebase/auth";
+import { appAuthProvider } from "../firebase";
 
 /**
  * @module serviceUserAuth
@@ -14,15 +14,20 @@ import {
 
 /**
  *
- * @returns {Promise<UserCredential>}
+ * @returns {Promise<UserCredential | null>}
  */
-const signInUser = () => {
-  var provider = new GoogleAuthProvider();
-  return signInWithPopup(getAuth(), provider);
+const signInUser = async () => {
+  try {
+    var provider = new GoogleAuthProvider();
+    return await signInWithPopup(appAuthProvider, provider);
+  } catch (error) {
+    console.error("signInUser", error);
+    return null;
+  }
 };
 
 const signOutUser = () => {
-  signOut(getAuth()).then(() => {
+  signOut(appAuthProvider).then(() => {
     //todo something to reaload the page and show default values
     console.log("signed out!!!");
   });

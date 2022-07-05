@@ -18,6 +18,7 @@
  * @property {string} strActivitiesAndSoc
  * @property {boolean} booCurrent
  * @property {Date} dtCreatedOn
+ * @property {boolean} booActive
  */
 
 /**
@@ -35,6 +36,7 @@
  * @param {string} strActivitiesAndSoc
  * @param {boolean} booCurrent
  * @param {Date} dtCreatedOn
+ * @param {boolean} booActive
  * @returns {Education}
  */
 function shapeEducation(
@@ -51,7 +53,8 @@ function shapeEducation(
   strStartYear,
   strEndMonth,
   strEndYear,
-  dtCreatedOn
+  dtCreatedOn,
+  booActive
 ) {
   return {
     strEducationId,
@@ -68,6 +71,7 @@ function shapeEducation(
     strEndMonth,
     strEndYear,
     dtCreatedOn,
+    booActive,
   };
 }
 

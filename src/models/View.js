@@ -9,6 +9,7 @@
  * @property {string} strProfileId - Viewed profile Id
  * @property {string} strUserId - Viwer user Id
  * @property {Date} dtCreatedOn
+ * @property {boolean} booActive
  */
 
 /**
@@ -16,10 +17,11 @@
  * @param {string} strProfileId - Viewed profile Id
  * @param {string} strUserId - Viwer user Id
  * @param {Date} dtCreatedOn
+ * @param {boolean} booActive
  * @returns {View}
  */
-function shapeView(strViewId, strProfileId, strUserId, dtCreatedOn) {
-  return { strViewId, strProfileId, strUserId, dtCreatedOn };
+function shapeView(strViewId, strProfileId, strUserId, dtCreatedOn, booActive) {
+  return { strViewId, strProfileId, strUserId, dtCreatedOn, booActive };
 }
 
 export { shapeView };
