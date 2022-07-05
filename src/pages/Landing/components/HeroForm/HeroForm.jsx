@@ -6,7 +6,11 @@ import {
 } from "../../../../components/form-controls/";
 import { setLoggedUser } from "../../../../redux/states/logedUserSlice";
 import { createUser, getUser } from "../../../../services/serviceUser";
-import { signInUser, isNewUser } from "../../../../services/serviceUserAuth";
+import {
+  googleSignInUser,
+  isNewUser,
+  anonymousSignInUser,
+} from "../../../../services/serviceUserAuth";
 import {
   AuthenticationMethods,
   NavigationPaths,
@@ -24,32 +28,43 @@ const HeroForm = () => {
     );
   };
 
-  const handleAsyncJoinGoogle = async () => {
-    const objUserCredential = await signInUser();
+  /**
+   *
+   * @param {Object} objUserCredential
+   * @param {string} strAuthMethod
+   */
+  const handleAuthUserInfo = async (objUserCredential, strAuthMethod) => {
+    const objUser = objUserCredential.user;
 
-    if (objUserCredential) {
-      const objUser = objUserCredential.user;
+    if (isNewUser(objUserCredential)) {
+      const objCreatedUser = await createUser(
+        objUser.uid,
+        objUser.email ?? "",
+        objUser.displayName ?? "Dwight Schrute",
+        strAuthMethod,
+        objUser.photoURL ?? ""
+      );
 
-      if (isNewUser(objUserCredential)) {
-        const objCreatedUser = await createUser(
-          objUser.uid,
-          objUser.email ?? "",
-          objUser.displayName ?? "Dwight Schrute",
-          AuthenticationMethods.FIREBASE_GOOGLE,
-          objUser.photoURL ?? ""
-        );
-
-        if (objCreatedUser) {
-          dispatch(setLoggedUser(objCreatedUser));
-          objNavigate(NavigationPaths.FEED);
-        }
-      } else {
-        const objExistingUser = await getUser(objUser.uid);
-        if (objExistingUser) {
-          dispatch(setLoggedUser(objExistingUser));
-          objNavigate(NavigationPaths.FEED);
-        }
+      if (objCreatedUser) {
+        dispatch(setLoggedUser(objCreatedUser));
+        objNavigate(NavigationPaths.FEED, { state: { loggedIn: true } });
       }
+    } else {
+      const objExistingUser = await getUser(objUser.uid);
+      if (objExistingUser) {
+        dispatch(setLoggedUser(objExistingUser));
+        objNavigate(NavigationPaths.FEED, { state: { loggedIn: true } });
+      }
+    }
+  };
+
+  const handleAsyncJoinGoogle = async () => {
+    const objUserCredential = await googleSignInUser();
+    if (objUserCredential) {
+      handleAuthUserInfo(
+        objUserCredential,
+        AuthenticationMethods.FIREBASE_GOOGLE
+      );
     }
   };
 
@@ -58,7 +73,21 @@ const HeroForm = () => {
     handleAsyncJoinGoogle();
   };
 
-  const handleGuestClick = () => {};
+  const authenticateAnonymously = async () => {
+    const objUserCredential = await anonymousSignInUser();
+
+    if (objUserCredential) {
+      handleAuthUserInfo(
+        objUserCredential,
+        AuthenticationMethods.FIREBASE_ANONYMOUS
+      );
+    }
+  };
+
+  const handleGuestClick = (e) => {
+    e.preventDefault();
+    authenticateAnonymously();
+  };
 
   const handleTermsAndConditions = () => {
     showNotAvailableToast();

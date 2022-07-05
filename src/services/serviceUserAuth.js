@@ -3,6 +3,7 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
   getAdditionalUserInfo,
+  signInAnonymously,
   // eslint-disable-next-line no-unused-vars
   UserCredential,
 } from "firebase/auth";
@@ -16,20 +17,20 @@ import { appAuthProvider } from "../firebase";
  *
  * @returns {Promise<UserCredential | null>}
  */
-const signInUser = async () => {
+const googleSignInUser = async () => {
   try {
     var provider = new GoogleAuthProvider();
     return await signInWithPopup(appAuthProvider, provider);
   } catch (error) {
-    console.error("signInUser", error);
+    console.error("googleSignInUser", error);
     return null;
   }
 };
 
-const signOutUser = () => {
+const googleSignOutUser = () => {
   signOut(appAuthProvider).then(() => {
     //todo something to reaload the page and show default values
-    console.log("signed out!!!");
+    console.log("googleSignOutUser out!!!");
   });
 };
 
@@ -43,4 +44,17 @@ const isNewUser = (objUserCrential) => {
   return objAdditionalInfo ? objAdditionalInfo.isNewUser : null;
 };
 
-export { signInUser, signOutUser, isNewUser };
+/**
+ *
+ * @returns {Promise<UserCredential | null>}
+ */
+const anonymousSignInUser = async () => {
+  try {
+    return await signInAnonymously(appAuthProvider);
+  } catch (error) {
+    console.error("anonymousSignIn:", error);
+    return null;
+  }
+};
+
+export { googleSignInUser, googleSignOutUser, isNewUser, anonymousSignInUser };
