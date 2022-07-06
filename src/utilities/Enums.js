@@ -44,6 +44,7 @@ const CollectionNames = Object.freeze({
   REACTIONS: "reactions",
   SKILLS: "skills",
   VIEWS: "views",
+  DATABASE_VALUES: "database-values",
 });
 
 const NavigationPaths = Object.freeze({

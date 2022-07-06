@@ -6,6 +6,8 @@ const Constants = (() => {
     PortalDivId: "div-portal",
     ClassPrimaryButtonBorder: "button-primary-w-border",
     PopUpPortalDivId: "div-popup-portal",
+    ProfilePictureName: "profile-picture",
+    DefaultValuesDocumentId: "default-values",
   };
 })();
 

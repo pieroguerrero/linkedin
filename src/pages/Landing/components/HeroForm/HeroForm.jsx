@@ -4,19 +4,11 @@ import {
   RoundedTextButton,
   ButtonRounded,
 } from "../../../../components/form-controls/";
-import { setLoggedUser } from "../../../../redux/states/logedUserSlice";
-import { createUser, getUser } from "../../../../services/serviceUser";
 import {
-  googleSignInUser,
-  isNewUser,
-  anonymousSignInUser,
-} from "../../../../services/serviceUserAuth";
-import {
-  AuthenticationMethods,
-  NavigationPaths,
   showCustomTextToast,
   showNotAvailableToast,
 } from "../../../../utilities";
+import { authenticateAnonymously, handleAsyncJoinGoogle } from "./HeroFormUtil";
 
 const HeroForm = () => {
   const objNavigate = useNavigate();
@@ -28,65 +20,14 @@ const HeroForm = () => {
     );
   };
 
-  /**
-   *
-   * @param {Object} objUserCredential
-   * @param {string} strAuthMethod
-   */
-  const handleAuthUserInfo = async (objUserCredential, strAuthMethod) => {
-    const objUser = objUserCredential.user;
-
-    if (isNewUser(objUserCredential)) {
-      const objCreatedUser = await createUser(
-        objUser.uid,
-        objUser.email ?? "",
-        objUser.displayName ?? "Dwight Schrute",
-        strAuthMethod,
-        objUser.photoURL ?? ""
-      );
-
-      if (objCreatedUser) {
-        dispatch(setLoggedUser(objCreatedUser));
-        objNavigate(NavigationPaths.FEED, { state: { loggedIn: true } });
-      }
-    } else {
-      const objExistingUser = await getUser(objUser.uid);
-      if (objExistingUser) {
-        dispatch(setLoggedUser(objExistingUser));
-        objNavigate(NavigationPaths.FEED, { state: { loggedIn: true } });
-      }
-    }
-  };
-
-  const handleAsyncJoinGoogle = async () => {
-    const objUserCredential = await googleSignInUser();
-    if (objUserCredential) {
-      handleAuthUserInfo(
-        objUserCredential,
-        AuthenticationMethods.FIREBASE_GOOGLE
-      );
-    }
-  };
-
   const handleJoinGoogleClick = (e) => {
     e.preventDefault();
-    handleAsyncJoinGoogle();
-  };
-
-  const authenticateAnonymously = async () => {
-    const objUserCredential = await anonymousSignInUser();
-
-    if (objUserCredential) {
-      handleAuthUserInfo(
-        objUserCredential,
-        AuthenticationMethods.FIREBASE_ANONYMOUS
-      );
-    }
+    handleAsyncJoinGoogle(dispatch, objNavigate);
   };
 
   const handleGuestClick = (e) => {
     e.preventDefault();
-    authenticateAnonymously();
+    authenticateAnonymously(dispatch, objNavigate);
   };
 
   const handleTermsAndConditions = () => {

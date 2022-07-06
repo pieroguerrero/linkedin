@@ -7,7 +7,7 @@
  * @param {("ligth-gray" | "white" | "ligth-orange")} props.strColor
  * @returns
  */
-const Section = ({ strTitle, strSubTitle, children, strColor }) => {
+export default function Section({ strTitle, strSubTitle, children, strColor }) {
   return (
     <section
       className={
@@ -43,6 +43,4 @@ const Section = ({ strTitle, strSubTitle, children, strColor }) => {
       </div>
     </section>
   );
-};
-
-export { Section };
+}

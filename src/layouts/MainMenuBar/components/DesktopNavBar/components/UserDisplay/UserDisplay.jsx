@@ -7,8 +7,7 @@ import { User } from "../../../../../../models/User";
  * @param {User} props.objLoggedUser
  * @returns {JSX.Element}
  */
-export function Userdisplay({ objLoggedUser }) {
-  console.log(objLoggedUser.strProfilePicURL);
+export default function UserDisplay({ objLoggedUser }) {
   const handleClick = () => {};
   return (
     <button
@@ -19,6 +18,7 @@ export function Userdisplay({ objLoggedUser }) {
       onClick={handleClick}
     >
       <img
+        referrerPolicy="no-referrer"
         className="w-[22px] h-auto rounded-full"
         src={objLoggedUser.strProfilePicURL}
         alt={objLoggedUser.strFullName}

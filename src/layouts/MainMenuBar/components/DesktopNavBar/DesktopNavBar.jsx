@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
+import { lazy, Suspense } from "react";
 // eslint-disable-next-line no-unused-vars
 import { User } from "../../../../models/User";
-import { NavigationPaths } from "../../../../utilities";
+import { NavigationPaths, showNotAvailableToast } from "../../../../utilities";
 import { SearchBox } from "../SearchBox/";
 import { NavMenuOptions } from "../NavMenuOptions/NavMenuOptions";
-import { Userdisplay } from "./components/UserDisplay";
+const UserDisplay = lazy(() => import("./components/UserDisplay/UserDisplay"));
 
 /**
  *
@@ -13,9 +14,13 @@ import { Userdisplay } from "./components/UserDisplay";
  * @returns {JSX.Element}
  */
 export function DesktopNavBar({ objLoggedUser }) {
+  const handleNotAvailableClick = () => {
+    showNotAvailableToast();
+  };
   return (
-    <nav className="hidden sm:flex justify-center w-full">
-      <div className="flex gap-1 justify-center items-center max-w-6xl">
+    //TODO: Finish the Searchbar with a shade and animation when is clicked. Build the popup that comes from the 'Me' button
+    <nav className="hidden sm:flex justify-center w-full shadow-sm border">
+      <div className="flex gap-1 justify-center items-center w-full max-w-6xl">
         <Link
           to={NavigationPaths.BASE + "/" + NavigationPaths.FEED}
           className="text-color-blue"
@@ -34,8 +39,52 @@ export function DesktopNavBar({ objLoggedUser }) {
         </Link>
         <SearchBox objLoggedUser={objLoggedUser} />
         <NavMenuOptions objLoggedUser={objLoggedUser} />
-        <Userdisplay objLoggedUser={objLoggedUser} />
-        <div>{"extra options"}</div>
+        <Suspense>
+          <UserDisplay objLoggedUser={objLoggedUser} />
+        </Suspense>
+        <button
+          type="button"
+          className={
+            "flex items-center flex-row sm:flex-col gap-1.5 sm:gap-0 h-[52px] w-fit sm:w-[80px] sm:min-w-[80px] justify-center  sm:border-solid sm:border-b-2 text-color-text-low-emphasis hover:text-black sm:border-b-transparent"
+          }
+          onClick={handleNotAvailableClick}
+        >
+          <span className="flex w-8 sm:w-auto h-fit  flex-shrink-0">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              data-supported-dps="24x24"
+              fill="currentColor"
+              width="24"
+              height="24"
+              focusable="false"
+            >
+              <path d="M3 3h4v4H3zm7 4h4V3h-4zm7-4v4h4V3zM3 14h4v-4H3zm7 0h4v-4h-4zm7 0h4v-4h-4zM3 21h4v-4H3zm7 0h4v-4h-4zm7 0h4v-4h-4z"></path>
+            </svg>
+          </span>
+
+          <span className="flex items-center text-sm font-bold sm:font-normal break-all leading-[18px] ">
+            {"Work"}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 16 16"
+              data-supported-dps="16x16"
+              fill="currentColor"
+              width="16"
+              height="16"
+              focusable="false"
+            >
+              <path d="M8 11L3 6h10z" fillRule="evenodd"></path>
+            </svg>
+          </span>
+        </button>
+        <button
+          onClick={handleNotAvailableClick}
+          type="button"
+          className="w-full max-w-[100px] text-[#915907] text-[13px] leading-[18px] font-normal hover:underline hover:text-[#5d3b09]"
+        >
+          Try Premium for free
+        </button>
       </div>
     </nav>
   );

@@ -12,7 +12,6 @@ import { NavigationPaths, showNotAvailableToast } from "../../../../utilities";
  */
 export function NavMenuOptions({ objLoggedUser }) {
   const objLocation = useLocation();
-  console.log(objLocation.pathname);
   const handleHomeClick = () => {
     console.log("NavMenuOptions.Home:", objLoggedUser);
   };

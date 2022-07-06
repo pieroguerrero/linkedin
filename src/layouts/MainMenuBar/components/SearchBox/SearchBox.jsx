@@ -7,16 +7,16 @@ import { User } from "../../../../models/User";
  * @param {User} props.objLoggedUser
  * @returns {JSX.Element}
  */
+// eslint-disable-next-line no-unused-vars
 export function SearchBox({ objLoggedUser }) {
-  console.log("SearchBox:", objLoggedUser);
   return (
-    <div className="relative w-full">
+    <div className="relative w-full flex-1 shrink-0">
       <input
         type="text"
         name="input-search-box"
         id="input-search-box"
         placeholder="Search"
-        className="flex items-center pl-10 pr-2 w-full h-[34px] bg-color-gray-soft-background rounded-[4px] border-none text-sm font-normal text-color-text-darker max-w-[232px] focus:max-w-[260px]"
+        className="flex items-center pl-10 pr-2 w-full h-[34px] bg-color-gray-soft-background rounded-[4px] border-none text-sm font-normal text-color-text-darker sm:max-w-[280px] focus:max-w-[384px]"
       />
       <div className="absolute top-2.5 left-4 text-color-text w-4 h-4">
         <svg
