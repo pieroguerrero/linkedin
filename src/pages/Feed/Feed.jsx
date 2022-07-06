@@ -1,5 +1,7 @@
 const Feed = () => {
-  return <div>{"Feed page!"}</div>;
+  return (
+    <div className=" bg-color-main-background min-h-screen">{"Feed page!"}</div>
+  );
 };
 
 export { Feed };

@@ -16,6 +16,8 @@ module.exports = {
         "color-button-blue": "#0A66C2",
         "color-button-blue-darker": "#004182",
         "color-text-accent": "#8f5849",
+        "color-gray-soft-background": "#eef3f8",
+        "color-main-background": "#F3F2EF",
       },
       fontFamily: {
         "source-sans": ["Source Sans", "sans-serif"],

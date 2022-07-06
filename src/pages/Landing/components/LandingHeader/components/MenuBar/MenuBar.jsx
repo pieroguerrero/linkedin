@@ -1,5 +1,5 @@
 import React from "react";
-import { ButtonImageText } from "./components/ButtonImageText";
+import { ButtonImageText } from "../../../../../../components/form-controls/";
 import { showNotAvailableToast } from "../../../../../../utilities";
 
 const MenuBar = () => {

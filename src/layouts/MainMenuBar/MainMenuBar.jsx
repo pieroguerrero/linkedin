@@ -4,6 +4,7 @@ import { getReduxState } from "../../utilities/ReduxUtils";
 import { EmptyUserState } from "../../redux/states/logedUserSlice";
 import { useNavigate } from "react-router-dom";
 import { NavigationPaths } from "../../utilities";
+import { DesktopNavBar } from "./components/DesktopNavBar/";
 
 /**
  * @param {Object} props
@@ -22,8 +23,23 @@ export function MainMenuBar({ children }) {
 
   return (
     <div>
-      <header>{"Header"}</header>
+      <header>
+        {/* Desktop */}
+        <DesktopNavBar objLoggedUser={objLoggedUser} />
+        {/* Mobile Top*/}
+        <nav className="sm:hidden flex">
+          <div>{"personal menu"}</div>
+          <div>{"search"}</div>
+          <div>{"messenger"}</div>
+        </nav>
+      </header>
       <div>{children}</div>
+      {/* Mobile Bottom*/}
+      <div>
+        <nav className="sm:hidden">
+          <div>{"menu options"}</div>
+        </nav>
+      </div>
     </div>
   );
 }
