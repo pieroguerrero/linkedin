@@ -1,6 +1,8 @@
 const Feed = () => {
   return (
-    <div className=" bg-color-main-background min-h-screen">{"Feed page!"}</div>
+    <div className=" bg-color-main-background h-full flex-1">
+      {"Feed page!"}
+    </div>
   );
 };
 

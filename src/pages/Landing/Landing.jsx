@@ -2,14 +2,19 @@ import { Hero } from "./components/Hero";
 import { LandingHeader } from "./components/LandingHeader";
 
 import { RoundedTextButton } from "../../components/form-controls";
-import { showNotAvailableToast, showOveralWarning } from "../../utilities";
+// eslint-disable-next-line no-unused-vars
+import { showOveralWarning, showNotAvailableToast } from "../../utilities";
 import { Credits } from "../../layouts/Credits";
 import { useEffect, lazy, Suspense } from "react";
+// const BottomSection = lazy(() =>
+//   import("./components/BottomSection/BottomSection")
+// );
+import { BottomSection } from "./components/BottomSection";
 const Section = lazy(() => import("./components/Section/Section"));
 
 const Landing = () => {
   useEffect(() => {
-    showOveralWarning();
+    //showOveralWarning();
   }, []);
 
   const handleGeneralClick = () => {
@@ -221,24 +226,10 @@ const Landing = () => {
               booFullWidth={false}
             ></RoundedTextButton>
           </Section>
-          <section className=" min-h-[500px] sm:min-h-[840px] bg-white sm:mt-4 bg-lp-bottom-pattern bg-no-repeat bg-cover sm:bg-auto  w-full flex justify-center bg-[left_top_0.6rem] sm:bg-center">
-            <div className="max-w-6xl w-full px-4 py-[56px] sm:py-[60px] flex flex-col gap-3 sm:gap-7">
-              <h2 className=" text-color-text-darker text-[34px] sm:text-[56px] sm:leading-[70px] font-extralight">
-                Join your colleagues, classmates, and friends on LinkedIn.
-              </h2>
-              <div className=" text-xl">
-                <RoundedTextButton
-                  strColor="blue"
-                  strText="Get started"
-                  booBorder={true}
-                  booColoredBackground={true}
-                  booFullWidth={false}
-                  handleClick={handleGeneralClick}
-                />
-              </div>
-            </div>
-          </section>
         </Suspense>
+        {/* <Suspense> */}
+        <BottomSection handleClick={handleGeneralClick} />
+        {/* </Suspense> */}
       </main>
       <footer className=" bg-color-blue text-white text-sm  w-full h-12 mt-[-2px] sm:mt-[-8px]">
         <Credits />

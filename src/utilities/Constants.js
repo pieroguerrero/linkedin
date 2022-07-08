@@ -6,6 +6,7 @@ const Constants = (() => {
     PortalDivId: "div-portal",
     ClassPrimaryButtonBorder: "button-primary-w-border",
     PopUpPortalDivId: "div-popup-portal",
+    FeedPortalDivId: "div-feed-portal",
     ProfilePictureName: "profile-picture",
     DefaultValuesDocumentId: "default-values",
   };

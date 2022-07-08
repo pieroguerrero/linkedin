@@ -1,3 +1,4 @@
+import { FadeInAnimationDiv } from "../../../../../../components/FadeInAnimationDiv/";
 // eslint-disable-next-line no-unused-vars
 import { User } from "../../../../../../models/User";
 
@@ -17,12 +18,14 @@ export default function UserDisplay({ objLoggedUser }) {
       }
       onClick={handleClick}
     >
-      <img
-        referrerPolicy="no-referrer"
-        className="w-[22px] h-auto rounded-full"
-        src={objLoggedUser.strProfilePicURL}
-        alt={objLoggedUser.strFullName}
-      />
+      <FadeInAnimationDiv strDuration="duration-1000">
+        <img
+          referrerPolicy="no-referrer"
+          className="w-[23px] h-[23px] rounded-full"
+          src={objLoggedUser.strProfilePicURL}
+          alt={objLoggedUser.strFullName}
+        />
+      </FadeInAnimationDiv>
       <span className="flex items-center text-sm font-bold sm:font-normal break-all leading-[18px] ">
         {"Me"}
         <svg

@@ -5,6 +5,7 @@ import { User } from "../../../../models/User";
 import { NavigationPaths, showNotAvailableToast } from "../../../../utilities";
 import { SearchBox } from "../SearchBox/";
 import { NavMenuOptions } from "../NavMenuOptions/NavMenuOptions";
+import { FadeInAnimationDiv } from "../../../../components/FadeInAnimationDiv/FadeInAnimationDiv";
 const UserDisplay = lazy(() => import("./components/UserDisplay/UserDisplay"));
 
 /**
@@ -20,7 +21,10 @@ export function DesktopNavBar({ objLoggedUser }) {
   return (
     //TODO: Finish the Searchbar with a shade and animation when is clicked. Build the popup that comes from the 'Me' button
     <nav className="hidden sm:flex justify-center w-full shadow-sm border">
-      <div className="flex gap-1 justify-center items-center w-full max-w-6xl">
+      <FadeInAnimationDiv
+        strDuration="duration-700"
+        className={"flex gap-1 justify-center items-center w-full max-w-6xl"}
+      >
         <Link
           to={NavigationPaths.BASE + "/" + NavigationPaths.FEED}
           className="text-color-blue"
@@ -38,7 +42,9 @@ export function DesktopNavBar({ objLoggedUser }) {
           </svg>
         </Link>
         <SearchBox objLoggedUser={objLoggedUser} />
+
         <NavMenuOptions objLoggedUser={objLoggedUser} />
+
         <Suspense>
           <UserDisplay objLoggedUser={objLoggedUser} />
         </Suspense>
@@ -85,7 +91,7 @@ export function DesktopNavBar({ objLoggedUser }) {
         >
           Try Premium for free
         </button>
-      </div>
+      </FadeInAnimationDiv>
     </nav>
   );
 }

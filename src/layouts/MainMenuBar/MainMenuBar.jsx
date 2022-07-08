@@ -22,7 +22,7 @@ export function MainMenuBar({ children }) {
   }, []);
 
   return (
-    <div>
+    <div className="flex flex-col h-full min-h-screen">
       <header>
         {/* Desktop */}
         <DesktopNavBar objLoggedUser={objLoggedUser} />
@@ -33,7 +33,7 @@ export function MainMenuBar({ children }) {
           <div>{"messenger"}</div>
         </nav>
       </header>
-      <div>{children}</div>
+      <div className="relative h-full flex-1 flex flex-col">{children}</div>
       {/* Mobile Bottom*/}
       <div>
         <nav className="sm:hidden">

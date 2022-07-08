@@ -23,7 +23,7 @@ module.exports = {
         "source-sans": ["Source Sans", "sans-serif"],
       },
       backgroundImage: {
-        "lp-bottom-pattern": "url('./assets/images/bottom-bg.png')",
+        "lp-bottom-pattern": "url('./assets/images/bottom-bg.webp')",
       },
     },
   },

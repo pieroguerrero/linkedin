@@ -10,7 +10,7 @@ import {
 } from "../../../../utilities";
 import { authenticateAnonymously, handleAsyncJoinGoogle } from "./HeroFormUtil";
 
-const HeroForm = () => {
+export default function HeroForm() {
   const objNavigate = useNavigate();
   const dispatch = useDispatch();
   const handleAgreeAndJoinClick = () => {
@@ -141,6 +141,4 @@ const HeroForm = () => {
       </div>
     </form>
   );
-};
-
-export { HeroForm };
+}

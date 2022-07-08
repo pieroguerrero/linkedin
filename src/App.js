@@ -12,7 +12,10 @@ function App() {
         <Outlet />
       ) : (
         <MainMenuBar>
-          <Outlet />
+          <>
+            <Outlet />
+            <div id="div-feed-portal"></div>
+          </>
         </MainMenuBar>
       )}
     </>
