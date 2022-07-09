@@ -4,11 +4,18 @@ import store from "./redux/store";
 import "./index.css";
 import App from "./App";
 import { NavigationPaths } from "./utilities";
-import { Landing } from "./pages/Landing/Landing";
+const Landing = lazy(() => import("./pages/Landing/Landing"));
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
+
+// const ToastContainer = lazy(() =>
+//   import("react-toastify").then((module) => ({
+//     default: module.ToastContainer,
+//   }))
+// );
 import "react-toastify/dist/ReactToastify.css";
-import { Feed } from "./pages/Feed/Feed";
+const Feed = lazy(() => import("./pages/Feed/Feed"));
+import { lazy, Suspense } from "react";
+import { ToastContainer } from "react-toastify";
 
 const divRoot = document.getElementById("root");
 
@@ -18,13 +25,14 @@ if (divRoot) {
     // <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
-        <Routes>
-          <Route path={NavigationPaths.BASE} element={<App />}>
-            <Route index element={<Landing />} />
-            {/* //TODO: Create the Feed component Layout */}
-            <Route path={NavigationPaths.FEED} element={<Feed />} />
-          </Route>
-        </Routes>
+        <Suspense>
+          <Routes>
+            <Route path={NavigationPaths.BASE} element={<App />}>
+              <Route index element={<Landing />} />
+              <Route path={NavigationPaths.FEED} element={<Feed />} />
+            </Route>
+          </Routes>
+        </Suspense>
       </BrowserRouter>
       <ToastContainer />
     </Provider>

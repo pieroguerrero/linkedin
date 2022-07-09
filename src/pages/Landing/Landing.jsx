@@ -1,20 +1,15 @@
 import { Hero } from "./components/Hero";
 import { LandingHeader } from "./components/LandingHeader";
-
 import { RoundedTextButton } from "../../components/form-controls";
-// eslint-disable-next-line no-unused-vars
 import { showOveralWarning, showNotAvailableToast } from "../../utilities";
 import { Credits } from "../../layouts/Credits";
 import { useEffect, lazy, Suspense } from "react";
-// const BottomSection = lazy(() =>
-//   import("./components/BottomSection/BottomSection")
-// );
 import { BottomSection } from "./components/BottomSection";
 const Section = lazy(() => import("./components/Section/Section"));
 
-const Landing = () => {
+export default function Landing() {
   useEffect(() => {
-    //showOveralWarning();
+    showOveralWarning();
   }, []);
 
   const handleGeneralClick = () => {
@@ -22,7 +17,7 @@ const Landing = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen  items-center">
+    <div className="flex flex-col h-full min-h-screen  items-center">
       <LandingHeader />
       <main className="flex flex-col items-center w-full overflow-hidden">
         <Hero />
@@ -236,6 +231,5 @@ const Landing = () => {
       </footer>
     </div>
   );
-};
+}
 // bg-[right_bottom_-11rem]
-export { Landing };

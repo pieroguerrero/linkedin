@@ -1,10 +1,10 @@
 import { useLayoutEffect, useRef } from "react";
 
 /**
- *
+ * Animate the renderization of a element. Works good with syncronous renderization
  * @param {object} props
  * @param {string} [props.className]
- * @param {("duration-75" | "duration-100" |"duration-150" |"duration-200" |"duration-300" |"duration-500" |"duration-700" |"duration-1000")} [props.strDuration]
+ * @param {("duration-75" | "duration-100" |"duration-150" |"duration-200" |"duration-300" |"duration-500" |"duration-700" |"duration-1000"|"duration-[2000ms]"|"duration-[2500ms]"|"duration-[3000ms]"|"duration-[3500ms]"|"duration-[4000ms]"|"duration-[4500ms]"|"duration-[5000ms]")} [props.strDuration]
  * @param {Object} props.children
  * @returns
  */
@@ -12,14 +12,16 @@ export function FadeInAnimationDiv({ className, children, strDuration }) {
   const refDiv = useRef(null);
 
   useLayoutEffect(() => {
-    setTimeout(() => {
-      if (refDiv && refDiv.current) {
+    setTimeout(
+      () => {
+        //if (refDiv && refDiv.current) {
         // @ts-ignore
         refDiv.current.classList.remove("opacity-0");
         // @ts-ignore
         refDiv.current.classList.add("opacity-100");
       }
-    });
+      //}
+    );
   }, []);
 
   // let strDurationClass = "";

@@ -12,6 +12,11 @@ import {
   getDocs,
 } from "firebase/firestore";
 
+// const proDoc = (async () => {
+//   const { doc } = await import("firebase/firestore");
+//   return doc;
+// })();
+
 /**
  * Contains the basic methods to interact with a Firestore Database
  * @module FirestoreUtil
@@ -26,6 +31,7 @@ import {
  */
 const createWithId = async (objData, strId, ...arrPath) => {
   const arrNewPath = [...arrPath, strId];
+  //const doc = await proDoc;
   try {
     const objDocReference = doc(appDB, arrNewPath[0], ...arrNewPath.slice(1));
     await setDoc(objDocReference, objData);

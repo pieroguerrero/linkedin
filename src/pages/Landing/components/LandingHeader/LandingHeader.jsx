@@ -1,4 +1,5 @@
 import React from "react";
+import { FadeInAnimationDiv } from "../../../../components/FadeInAnimationDiv";
 import { RoundedTextButton } from "../../../../components/form-controls/RoundedTextButton";
 import { showCustomTextToast } from "../../../../utilities";
 import { HamburguerMenu } from "./components/HamburguerMenu";
@@ -75,7 +76,10 @@ const LandingHeader = () => {
           </svg>
         </div>
         {/* NormalMenu */}
-        <div className="hidden sm:flex sm:gap-1">
+        <FadeInAnimationDiv
+          className="hidden sm:flex sm:gap-1"
+          strDuration="duration-[4500ms]"
+        >
           <div className="flex items-center justify-center">
             <MenuBar />
             <span className=" border-r border-color-gray-medium border-solid h-9"></span>
@@ -92,7 +96,7 @@ const LandingHeader = () => {
             booBorder={true}
             handleClick={onClicksignIn}
           />
-        </div>
+        </FadeInAnimationDiv>
         <div className="flex items-baseline justify-center sm:hidden">
           <RoundedTextButton
             strColor="blue"

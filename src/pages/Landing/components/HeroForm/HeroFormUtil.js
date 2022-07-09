@@ -1,23 +1,21 @@
+//import { Dispatch, AnyAction } from "@reduxjs/toolkit";
+//import { UserCredential } from "firebase/auth";
 import { setLoggedUser } from "../../../../redux/states/logedUserSlice";
-// eslint-disable-next-line no-unused-vars
 import { createUser, getUser } from "../../../../services/serviceUser";
-import {
-  anonymousSignInUser,
-  googleSignInUser,
-  isNewUser,
-} from "../../../../services/serviceUserAuth";
 import {
   AuthenticationMethods,
   Constants,
   NavigationPaths,
 } from "../../../../utilities";
 // eslint-disable-next-line no-unused-vars
-import { Dispatch, AnyAction } from "@reduxjs/toolkit";
-// eslint-disable-next-line no-unused-vars
 import { NavigateFunction } from "react-router-dom";
-// eslint-disable-next-line no-unused-vars
-import { UserCredential } from "firebase/auth";
 import { getBlobFile } from "../../../../services/serviceIO";
+
+import {
+  anonymousSignInUser,
+  googleSignInUser,
+  isNewUser,
+} from "../../../../services/serviceUserAuth";
 import { saveFile } from "../../../../services/firestorageUtil";
 
 /**
@@ -58,9 +56,9 @@ const getDefaultProfilePicUrl = async () => {
 
 /**
  *
- * @param {UserCredential} objUserCredential
+ * @param {Object} objUserCredential
  * @param {string} strAuthMethod
- * @param {Dispatch<AnyAction>} dispatch
+ * @param {Object} dispatch
  * @param {NavigateFunction} objNavigate
  * @returns {Promise<void>}
  */
@@ -102,7 +100,7 @@ const handleAuthUserInfo = async (
 };
 
 /**
- * @param {Dispatch<AnyAction>} dispatch
+ * @param {Object} dispatch
  * @param {NavigateFunction} objNavigate
  * @returns {Promise<void>}
  */
@@ -120,7 +118,7 @@ const authenticateAnonymously = async (dispatch, objNavigate) => {
 };
 
 /**
- * @param {Dispatch<AnyAction>} dispatch
+ * @param {Object} dispatch
  * @param {NavigateFunction} objNavigate
  * @returns {Promise<void>}
  */
