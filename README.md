@@ -3,4 +3,4 @@
 - Standard Linkedin color palette: https://brand.linkedin.com/content/brand/global/en_us/index/visual-identity/color-palettes
 - Standard LinkedIn Typography: https://brand.linkedin.com/content/brand/global/en_us/index/visual-identity/typography
 - React, Custom CRA template, react-router, react-redux, TailwindCSS, JSDocs, Lazy loading of pictures and components, CLEAN project achitecture, Firestore, Firestorage,
-- Running the project always in 3G
+- Running the project always in 3G and using dynamic imports to load heavy libraries such as Firestore and Firestorage

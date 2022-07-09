@@ -18,6 +18,22 @@ import {
 } from "../../../../services/serviceUserAuth";
 import { saveFile } from "../../../../services/firestorageUtil";
 
+// const promiseServAuth = (async () => {
+//   const { anonymousSignInUser, googleSignInUser, isNewUser } = await import(
+//     "../../../../services/serviceUserAuth"
+//   );
+//   return {
+//     anonymousSignInUser,
+//     googleSignInUser,
+//     isNewUser,
+//   };
+// })();
+
+// const promiseSaveFile = (async () => {
+//   const { saveFile } = await import("../../../../services/firestorageUtil");
+//   return saveFile;
+// })();
+
 /**
  * Analyzes the profile picture url provided, if it contains data then i will store if in the firestorage, if not it will store a defatul picture. Returns the public URL of the recently saved picture.
  * @param {string | null} strPhotoURL
@@ -34,6 +50,7 @@ const processProfilePhotoURL = async (strPhotoURL, strUserId) => {
     if (objBlob) {
       const strPicDestinationPath =
         strUserId + "/" + Constants.ProfilePictureName;
+      //const saveFile = await promiseSaveFile;
       const objURLs = await saveFile(strPicDestinationPath, objBlob);
       return objURLs?.strFileURL ?? null;
     }
@@ -70,6 +87,7 @@ const handleAuthUserInfo = async (
 ) => {
   const objUser = objUserCredential.user;
 
+  //const { isNewUser } = await promiseServAuth;
   if (isNewUser(objUserCredential)) {
     let strPhotoURL = "";
     if (objUser.photoURL && objUser.photoURL.length > 0) {
@@ -105,6 +123,7 @@ const handleAuthUserInfo = async (
  * @returns {Promise<void>}
  */
 const authenticateAnonymously = async (dispatch, objNavigate) => {
+  //const { anonymousSignInUser } = await promiseServAuth;
   const objUserCredential = await anonymousSignInUser();
 
   if (objUserCredential) {
@@ -123,6 +142,7 @@ const authenticateAnonymously = async (dispatch, objNavigate) => {
  * @returns {Promise<void>}
  */
 const handleAsyncJoinGoogle = async (dispatch, objNavigate) => {
+  //const { googleSignInUser } = await promiseServAuth;
   const objUserCredential = await googleSignInUser();
   if (objUserCredential) {
     handleAuthUserInfo(

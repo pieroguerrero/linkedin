@@ -8,7 +8,7 @@ import {
   showCustomTextToast,
   showNotAvailableToast,
 } from "../../../../utilities";
-import { authenticateAnonymously, handleAsyncJoinGoogle } from "./HeroFormUtil";
+//import { authenticateAnonymously, handleAsyncJoinGoogle } from "./HeroFormUtil";
 
 export default function HeroForm() {
   const objNavigate = useNavigate();
@@ -22,12 +22,16 @@ export default function HeroForm() {
 
   const handleJoinGoogleClick = (e) => {
     e.preventDefault();
-    handleAsyncJoinGoogle(dispatch, objNavigate);
+    import("./HeroFormUtil").then(({ handleAsyncJoinGoogle }) => {
+      handleAsyncJoinGoogle(dispatch, objNavigate);
+    });
   };
 
   const handleGuestClick = (e) => {
     e.preventDefault();
-    authenticateAnonymously(dispatch, objNavigate);
+    import("./HeroFormUtil").then(({ authenticateAnonymously }) => {
+      authenticateAnonymously(dispatch, objNavigate);
+    });
   };
 
   const handleTermsAndConditions = () => {
