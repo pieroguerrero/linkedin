@@ -17,6 +17,7 @@ import {
   isNewUser,
 } from "../../../../services/serviceUserAuth";
 import { saveFile } from "../../../../services/firestorageUtil";
+import AnonymousUserData from "../../../../utilities/AnonymousUserData";
 
 // const promiseServAuth = (async () => {
 //   const { anonymousSignInUser, googleSignInUser, isNewUser } = await import(
@@ -35,7 +36,7 @@ import { saveFile } from "../../../../services/firestorageUtil";
 // })();
 
 /**
- * Analyzes the profile picture url provided, if it contains data then i will store if in the firestorage, if not it will store a defatul picture. Returns the public URL of the recently saved picture.
+ * Analyzes the profile picture url provided, if it contains data then it will be stored in the firestorage, otherwise, it will store a defatul picture. Returns the public URL of the recently saved picture.
  * @param {string | null} strPhotoURL
  * @param {string} strUserId
  * @returns {Promise<string | null>}
@@ -72,6 +73,20 @@ const getDefaultProfilePicUrl = async () => {
 };
 
 /**
+ * @param {Object} dispatch
+ * @param {NavigateFunction} objNavigate
+ * @param {string} strUserId
+ * @return {Promise<void>}
+ */
+const handleExistingUser = async (strUserId, dispatch, objNavigate) => {
+  const objExistingUser = await getUser(strUserId);
+  if (objExistingUser) {
+    dispatch(setLoggedUser(objExistingUser));
+    objNavigate(NavigationPaths.FEED, { state: { loggedIn: true } });
+  }
+};
+
+/**
  *
  * @param {Object} objUserCredential
  * @param {string} strAuthMethod
@@ -87,7 +102,6 @@ const handleAuthUserInfo = async (
 ) => {
   const objUser = objUserCredential.user;
 
-  //const { isNewUser } = await promiseServAuth;
   if (isNewUser(objUserCredential)) {
     let strPhotoURL = "";
     if (objUser.photoURL && objUser.photoURL.length > 0) {
@@ -105,15 +119,13 @@ const handleAuthUserInfo = async (
     );
 
     if (objCreatedUser) {
+      //TODO: here the profile with default values should be created
+
       dispatch(setLoggedUser(objCreatedUser));
       objNavigate(NavigationPaths.FEED, { state: { loggedIn: true } });
     }
   } else {
-    const objExistingUser = await getUser(objUser.uid);
-    if (objExistingUser) {
-      dispatch(setLoggedUser(objExistingUser));
-      objNavigate(NavigationPaths.FEED, { state: { loggedIn: true } });
-    }
+    handleExistingUser(objUser.uid, dispatch, objNavigate);
   }
 };
 
@@ -123,16 +135,11 @@ const handleAuthUserInfo = async (
  * @returns {Promise<void>}
  */
 const authenticateAnonymously = async (dispatch, objNavigate) => {
-  //const { anonymousSignInUser } = await promiseServAuth;
   const objUserCredential = await anonymousSignInUser();
 
   if (objUserCredential) {
-    handleAuthUserInfo(
-      objUserCredential,
-      AuthenticationMethods.FIREBASE_ANONYMOUS,
-      dispatch,
-      objNavigate
-    );
+    //We extract the anonymous user created in the DB.
+    handleExistingUser(AnonymousUserData.strUserId, dispatch, objNavigate);
   }
 };
 

@@ -1,25 +1,19 @@
-import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { getReduxState } from "../../utilities/ReduxUtils";
 import { EmptyUserState } from "../../redux/states/logedUserSlice";
-import { useNavigate } from "react-router-dom";
-import { NavigationPaths } from "../../utilities";
+import { Navigate } from "react-router-dom";
 import { DesktopNavBar } from "./components/DesktopNavBar/";
+import { Outlet } from "react-router-dom";
 
 /**
- * @param {Object} props
- * @param {JSX.Element} props.children
  * @returns {JSX.Element}
  */
-export function MainMenuBar({ children }) {
-  const objNavigate = useNavigate();
+export default function MainMenuBar() {
   const objLoggedUser = useSelector(getReduxState);
 
-  useEffect(() => {
-    if (objLoggedUser === EmptyUserState) {
-      objNavigate(NavigationPaths.BASE);
-    }
-  }, []);
+  if (objLoggedUser === EmptyUserState) {
+    return <Navigate to={"/"} replace={true} />;
+  }
 
   return (
     <div className="flex flex-col h-full min-h-screen">
@@ -33,7 +27,9 @@ export function MainMenuBar({ children }) {
           <div>{"messenger"}</div>
         </nav>
       </header>
-      <div className="relative h-full flex-1 flex flex-col">{children}</div>
+      <div className="relative h-full flex-1 flex flex-col">
+        <Outlet />
+      </div>
       {/* Mobile Bottom*/}
       <div>
         <nav className="sm:hidden">

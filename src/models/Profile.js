@@ -80,4 +80,14 @@ function shapeProfileIntro(
   };
 }
 
-export { shapeProfile, shapeProfileIntro };
+/**
+ *
+ * @param {string} strUserOwnerId
+ * @param {string} strLanguageId
+ * @returns {string}
+ */
+const composeNewProfileId = (strUserOwnerId, strLanguageId) => {
+  return strUserOwnerId + "-" + strLanguageId;
+};
+
+export { shapeProfile, shapeProfileIntro, composeNewProfileId };
