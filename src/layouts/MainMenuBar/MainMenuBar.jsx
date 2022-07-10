@@ -29,6 +29,7 @@ export default function MainMenuBar() {
       </header>
       <div className="relative h-full flex-1 flex flex-col">
         <Outlet />
+        <div id="div-feed-portal"></div>
       </div>
       {/* Mobile Bottom*/}
       <div>

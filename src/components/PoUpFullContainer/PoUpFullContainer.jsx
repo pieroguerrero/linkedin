@@ -27,7 +27,7 @@ export default function PoUpFullContainer({
       refBgDiv.current.classList.add("opacity-100");
     }, 1);
   }, []);
-
+  console.log("divPortal", divPortal);
   return !divPortal ? (
     <></>
   ) : (

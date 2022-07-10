@@ -18,6 +18,7 @@ import {
 } from "../../../../services/serviceUserAuth";
 import { saveFile } from "../../../../services/firestorageUtil";
 import AnonymousUserData from "../../../../utilities/AnonymousUserData";
+import { createProfile } from "../../../../services/serviceProfile";
 
 // const promiseServAuth = (async () => {
 //   const { anonymousSignInUser, googleSignInUser, isNewUser } = await import(
@@ -88,6 +89,48 @@ const handleExistingUser = async (strUserId, dispatch, objNavigate) => {
 
 /**
  *
+ * @param {string} strUserOwnerId
+ * @param {string} strAbout
+ * @param {string} strProfilePicURL
+ * @param {string} strFullName
+ * @param {string} strHeadLine
+ * @param {string} strCountry
+ * @param {string} strPostalCode
+ * @param {string} strLanguageId
+ * @returns
+ */
+const createDefaultProfile = async (
+  strUserOwnerId,
+  strAbout,
+  strProfilePicURL,
+  strFullName,
+  strHeadLine,
+  strCountry,
+  strPostalCode,
+  strLanguageId
+) => {
+  const arrNames = strFullName.split(" ");
+  const strFirstName = arrNames[0].length > 0 ? arrNames[0] : "Dwight";
+  const strLastName =
+    arrNames.length > 1 ? arrNames.slice(1).join(" ").trim() : "Schrute";
+
+  return await createProfile(
+    strUserOwnerId,
+    true,
+    [],
+    strAbout,
+    strProfilePicURL,
+    strFirstName,
+    strLastName,
+    strHeadLine,
+    strCountry,
+    strPostalCode,
+    strLanguageId
+  );
+};
+
+/**
+ *
  * @param {Object} objUserCredential
  * @param {string} strAuthMethod
  * @param {Object} dispatch
@@ -119,10 +162,21 @@ const handleAuthUserInfo = async (
     );
 
     if (objCreatedUser) {
-      //TODO: here the profile with default values should be created
+      const objProfile = await createDefaultProfile(
+        objCreatedUser.strUserId,
+        "",
+        objCreatedUser.strProfilePicURL,
+        objCreatedUser.strFullName,
+        Constants.ProfileHeadLineEmptyName,
+        Constants.ProfileCountryEmptyName,
+        Constants.ProfilePostalCodeEmptyName,
+        Constants.DefaultValueLanguageId
+      );
 
-      dispatch(setLoggedUser(objCreatedUser));
-      objNavigate(NavigationPaths.FEED, { state: { loggedIn: true } });
+      if (objProfile) {
+        dispatch(setLoggedUser(objCreatedUser));
+        objNavigate(NavigationPaths.FEED, { state: { loggedIn: true } });
+      }
     }
   } else {
     handleExistingUser(objUser.uid, dispatch, objNavigate);
