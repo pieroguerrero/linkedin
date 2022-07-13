@@ -103,7 +103,7 @@ const selectById = async (strId, ...arrPath) => {
  * Selects all the documents in a Collection filtered by specific constraints.
  * @param {QueryConstraint[]} arrConstraints
  * @param {string[]} arrPathToCollection - Path to select the collection where the Document is located.
- * @returns {Promise<object[] | null>}
+ * @returns
  */
 const selectAll = async (arrConstraints, ...arrPathToCollection) => {
   try {

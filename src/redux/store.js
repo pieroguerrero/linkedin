@@ -9,8 +9,16 @@ const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
-        ignoredActionPaths: ["payload.dtCreatedOn"],
-        ignoredPaths: ["loggedUser.value.dtCreatedOn"],
+        ignoredActionPaths: [
+          "payload.dtCreatedOn",
+          "payload.objProfile.dtCreatedOn",
+          "payload.setProfile",
+        ],
+        ignoredPaths: [
+          "loggedUser.value.dtCreatedOn",
+          "loggedUser.value.objProfile.dtCreatedOn",
+          "loggedUser.value.setProfile",
+        ],
       }, //false
     }),
 });

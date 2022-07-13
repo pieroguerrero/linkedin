@@ -7,6 +7,7 @@
  * @param {boolean} props.booBorder
  * @param {boolean} [props.booFullWidth=false]
  * @param {boolean} [props.booColoredBackground=false]
+ * @param {boolean} [props.booFitHeigth=false]
  * @returns {JSX.Element}
  */
 
@@ -17,6 +18,7 @@ const RoundedTextButton = ({
   booBorder,
   booFullWidth = false,
   booColoredBackground = false,
+  booFitHeigth = false,
 }) => {
   const strClassName = (() => {
     if (!booColoredBackground) {
@@ -38,9 +40,10 @@ const RoundedTextButton = ({
       type="button"
       onClick={handleClick}
       className={
-        "flex justify-center items-center py-3 px-6 font-bold rounded-[28px] " +
+        "flex justify-center items-center font-bold rounded-[28px] " +
         (booFullWidth ? " w-full" : "w-fit") +
         (booBorder ? " border border-solid " : "") +
+        (booFitHeigth ? "" : " py-3 px-6") +
         strClassName
       }
     >

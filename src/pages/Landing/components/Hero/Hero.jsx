@@ -16,6 +16,7 @@ const Hero = () => {
       </FadeInAnimationDiv>
       <FadeInAnimationDiv className="flex" strDuration="duration-[5000ms]">
         <img
+          loading="lazy"
           className="flip-rtl block sm:w-[700px] sm:h-[560px] sm:relative flex-shrink w-[374px] h-[214px] static"
           alt="Welcome to your professional community"
           src={strSvgHeroImage}

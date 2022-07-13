@@ -18,7 +18,10 @@ import {
 } from "../../../../services/serviceUserAuth";
 import { saveFile } from "../../../../services/firestorageUtil";
 import AnonymousUserData from "../../../../utilities/AnonymousUserData";
-import { createProfile } from "../../../../services/serviceProfile";
+import {
+  createProfile,
+  getMainProfile,
+} from "../../../../services/serviceProfile";
 
 // const promiseServAuth = (async () => {
 //   const { anonymousSignInUser, googleSignInUser, isNewUser } = await import(
@@ -82,8 +85,12 @@ const getDefaultProfilePicUrl = async () => {
 const handleExistingUser = async (strUserId, dispatch, objNavigate) => {
   const objExistingUser = await getUser(strUserId);
   if (objExistingUser) {
-    dispatch(setLoggedUser(objExistingUser));
-    objNavigate(NavigationPaths.FEED, { state: { loggedIn: true } });
+    const objMainProfile = await getMainProfile(objExistingUser.strUserId);
+    if (objMainProfile) {
+      objExistingUser.setProfile(objMainProfile);
+      dispatch(setLoggedUser(objExistingUser));
+      objNavigate(NavigationPaths.FEED, { state: { loggedIn: true } });
+    }
   }
 };
 
@@ -174,6 +181,7 @@ const handleAuthUserInfo = async (
       );
 
       if (objProfile) {
+        objCreatedUser.setProfile(objProfile);
         dispatch(setLoggedUser(objCreatedUser));
         objNavigate(NavigationPaths.FEED, { state: { loggedIn: true } });
       }

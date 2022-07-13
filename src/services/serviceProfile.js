@@ -6,7 +6,8 @@ import {
 import { CollectionNames } from "../utilities/Enums";
 // eslint-disable-next-line no-unused-vars
 import { Profile } from "../models";
-import { createWithId } from "./firestoreUtil";
+import { createWithId, selectAll, where } from "./firestoreUtil";
+import { profileFromDataBase } from "../adapters";
 
 /**
  * @module ServiceProfile
@@ -73,4 +74,28 @@ const createProfile = async (
   }
 };
 
-export { createProfile };
+/**
+ *
+ * @param {string} strOserOwnerId
+ * @returns {Promise<Profile | null>}
+ */
+const getMainProfile = async (strOserOwnerId) => {
+  const arrQueryConstraint = [
+    where("booActive", "==", true),
+    where("booPrimary", "==", true),
+  ];
+  const objRawProfile = await selectAll(
+    arrQueryConstraint,
+    CollectionNames.USERS,
+    strOserOwnerId,
+    CollectionNames.PROFILES
+  );
+
+  if (objRawProfile && objRawProfile.length === 1) {
+    return profileFromDataBase(objRawProfile[0].data());
+  }
+
+  return null;
+};
+
+export { createProfile, getMainProfile };

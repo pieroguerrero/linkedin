@@ -2,7 +2,7 @@
   font-family: "Source Sans";
   font-style: normal;
   font-weight: normal;
-  src: url("./assets/fonts/source-sans/SourceSansPro-Regular.ttf");
+  src: url("./assets/fonts/source-sans/sourcesanspro-regular-webfont.woff2");
   font-display: swap;
 }
 
@@ -10,7 +10,7 @@
   font-family: "Source Sans";
   font-style: normal;
   font-weight: bold;
-  src: url("./assets/fonts/source-sans/SourceSansPro-Bold.ttf");
+  src: url("./assets/fonts/source-sans/sourcesanspro-bold-webfont.woff2");
   font-display: swap;
 }
 
@@ -18,7 +18,7 @@
   font-family: "Source Sans";
   font-style: normal;
   font-weight: 600;
-  src: url("./assets/fonts/source-sans/SourceSansPro-Semibold.ttf");
+  src: url("./assets/fonts/source-sans/sourcesanspro-semibold-webfont.woff2");
   font-display: swap;
 }
 
@@ -26,7 +26,7 @@
   font-family: "Source Sans";
   font-style: italic;
   font-weight: 600;
-  src: url("./assets/fonts/source-sans/SourceSansPro-SemiboldItalic.ttf");
+  src: url("./assets/fonts/source-sans/sourcesanspro-semibolditalic-webfont.woff2");
   font-display: swap;
 }
 
@@ -34,7 +34,7 @@
   font-family: "Source Sans";
   font-style: italic;
   font-weight: 400;
-  src: url("./assets/fonts/source-sans/SourceSansPro-Italic.ttf");
+  src: url("./assets/fonts/source-sans/sourcesanspro-italic-webfont.woff2");
   font-display: swap;
 }
 
@@ -42,7 +42,7 @@
   font-family: "Source Sans";
   font-style: normal;
   font-weight: 300;
-  src: url("./assets/fonts/source-sans/SourceSansPro-Light.ttf");
+  src: url("./assets/fonts/source-sans/sourcesanspro-light-webfont.woff2");
   font-display: swap;
 }
 
@@ -50,6 +50,6 @@
   font-family: "Source Sans";
   font-style: italic;
   font-weight: 300;
-  src: url("./assets/fonts/source-sans/SourceSansPro-LightItalic.ttf");
+  src: url("./assets/fonts/source-sans/sourcesanspro-lightitalic-webfont.woff2");
   font-display: swap;
 }

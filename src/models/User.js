@@ -1,3 +1,6 @@
+// eslint-disable-next-line no-unused-vars
+import { Profile } from "./Profile";
+
 /**
  *
  * @module Factory_User
@@ -12,6 +15,8 @@
  * @property {string} strProfilePicURL
  * @property {Date} dtCreatedOn
  * @property {boolean} booActive
+ * @property {Profile | null} objProfile
+ * @property {function(Profile):void} setProfile
  */
 
 /**
@@ -42,6 +47,10 @@ function shapeUser(
     strProfilePicURL,
     dtCreatedOn,
     booActive,
+    objProfile: null,
+    setProfile(value) {
+      this.objProfile = value;
+    },
   };
 }
 
