@@ -17,11 +17,10 @@ export default function UserDisplay({ objLoggedUser }) {
   };
 
   const closeMenu = () => {
-    console.log("CloseMenu");
     setShowPopUp(false);
   };
   return (
-    <div className="text-color-text-low-emphasis relative border-solid border-b-2 border-b-transparent border-r">
+    <div className="text-color-text-low-emphasis relative border-solid border-b-transparent border-r">
       <button
         type="button"
         className={

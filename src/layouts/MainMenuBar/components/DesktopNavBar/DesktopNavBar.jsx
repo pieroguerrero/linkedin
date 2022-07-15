@@ -19,8 +19,7 @@ export function DesktopNavBar({ objLoggedUser }) {
     showNotAvailableToast();
   };
   return (
-    //TODO: Finish the Searchbar with a shade and animation when is clicked. Build the popup that comes from the 'Me' button
-    <nav className="hidden sm:flex justify-center w-full shadow-sm border">
+    <nav className="hidden sm:flex justify-center w-full shadow-sm border-b">
       <FadeInAnimationDiv
         strDuration="duration-700"
         className={"flex gap-1 justify-center items-center w-full max-w-6xl"}

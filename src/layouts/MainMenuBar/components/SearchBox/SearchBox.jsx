@@ -34,9 +34,9 @@ export function SearchBox({ objLoggedUser }) {
           name="input-search-box"
           id="input-search-box"
           placeholder="Search"
-          className="flex items-center pl-10 pr-2 w-full h-[34px] bg-color-gray-soft-background rounded-[4px]  border-none text-sm font-normal transition-all ease-in-out text-color-text-darker sm:max-w-[280px] focus:shadow-inner focus:border-black focus:max-w-[384px] focus:border-[2px] focus:border-solid focus:outline-[0px] focus:ring-0 duration-500 "
+          className="flex items-center pl-8 sm:pl-10 sm:pr-2 w-full h-8 sm:h-[34px] bg-color-gray-soft-background rounded-[4px]  border-none text-[17px] sm:text-sm font-bold sm:font-normal sm:transition-all sm:ease-in-out text-color-gray-ligth focus:text-color-text-darker sm:text-color-text-darker sm:max-w-[280px] focus:shadow-inner focus:border-[#f1c40f] sm:focus:border-black sm:focus:max-w-[384px] focus:border-[2px] focus:border-solid focus:outline-[0px] focus:ring-0 sm:duration-500 "
         />
-        <div className="absolute top-2.5 left-4 text-color-text w-4 h-4">
+        <div className="absolute top-2 left-2 sm:top-2.5 sm:left-4 text-color-text w-4 h-4">
           <svg
             className="w-full h-auto"
             xmlns="http://www.w3.org/2000/svg"
@@ -55,6 +55,7 @@ export function SearchBox({ objLoggedUser }) {
         <Suspense>
           <PoUpFullContainer
             strBgColor="shade"
+            strBgColorMobile="white"
             strPortalDivId={Constants.FeedPortalDivId}
             handleCloseEvent={handleClosePopUp}
           >

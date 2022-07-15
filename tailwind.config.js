@@ -18,6 +18,7 @@ module.exports = {
         "color-text-accent": "#8f5849",
         "color-gray-soft-background": "#eef3f8",
         "color-main-background": "#F3F2EF",
+        "color-button-gray-ligth": "rgba(0, 0, 0, 0.45)",
       },
       fontFamily: {
         "source-sans": ["Source Sans", "sans-serif"],

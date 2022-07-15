@@ -23,7 +23,7 @@ export default function MainMenuBar() {
         {/* Desktop */}
         <DesktopNavBar objLoggedUser={objLoggedUser} />
         {/* Mobile Top*/}
-        <MobileNavBarTop />
+        <MobileNavBarTop objLoggedUser={objLoggedUser} />
       </header>
       <div className="relative h-full flex-1 flex flex-col">
         <Outlet />

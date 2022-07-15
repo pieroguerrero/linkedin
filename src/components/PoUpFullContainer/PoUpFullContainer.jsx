@@ -6,12 +6,14 @@ import { createPortal } from "react-dom";
  * @param {object} props
  * @param {string} props.strPortalDivId
  * @param {("white" | "shade")} props.strBgColor
+ * @param {("white" | "shade")} [props.strBgColorMobile="shade"]
  * @param {function():void} props.handleCloseEvent
  * @param {JSX.Element} props.children
  * @returns {JSX.Element}
  */
 export default function PoUpFullContainer({
   strBgColor,
+  strBgColorMobile = "shade",
   strPortalDivId,
   handleCloseEvent,
   children,
@@ -27,7 +29,6 @@ export default function PoUpFullContainer({
       refBgDiv.current.classList.add("opacity-100");
     }, 1);
   }, []);
-  console.log("divPortal", divPortal);
   return !divPortal ? (
     <></>
   ) : (
@@ -38,7 +39,9 @@ export default function PoUpFullContainer({
         className={
           "overflow-hidden absolute top-0 left-0 bottom-0 w-full h-full flex justify-center transition-opacity   duration-700 opacity-0" +
           " " +
-          (strBgColor === "shade" ? " bg-color-text" : "bg-white")
+          (strBgColor === "shade" ? " sm:bg-color-text" : "sm:bg-white") +
+          " " +
+          (strBgColorMobile === "shade" ? " bg-color-text" : "bg-white")
         }
       >
         <div>{children}</div>
