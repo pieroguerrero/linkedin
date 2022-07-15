@@ -17,7 +17,7 @@ const ButtonImageText = ({
     <button
       type="button"
       className={
-        "flex items-center flex-row sm:flex-col gap-1.5 sm:gap-0 h-[52px] w-fit sm:w-[80px] sm:min-w-[80px] justify-center  sm:border-solid sm:border-b-2 " +
+        "flex items-center flex-col gap-1.5 sm:gap-0 h-[52px] w-fit sm:w-[80px] sm:min-w-[80px] justify-center  sm:border-solid sm:border-b-2 " +
         (booSelected
           ? "text-black sm:border-b-black"
           : "text-color-text-low-emphasis hover:text-black sm:border-b-transparent")

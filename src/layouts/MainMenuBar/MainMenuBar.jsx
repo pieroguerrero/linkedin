@@ -4,6 +4,8 @@ import { EmptyUserState } from "../../redux/states/logedUserSlice";
 import { Navigate } from "react-router-dom";
 import { DesktopNavBar } from "./components/DesktopNavBar/";
 import { Outlet } from "react-router-dom";
+import { MobileNavBarTop } from "./components/MobileNavBar";
+import { MobileNavBarBottom } from "./components/MobileNavBar";
 
 /**
  * @returns {JSX.Element}
@@ -21,11 +23,7 @@ export default function MainMenuBar() {
         {/* Desktop */}
         <DesktopNavBar objLoggedUser={objLoggedUser} />
         {/* Mobile Top*/}
-        <nav className="sm:hidden flex">
-          <div>{"personal menu"}</div>
-          <div>{"search"}</div>
-          <div>{"messenger"}</div>
-        </nav>
+        <MobileNavBarTop />
       </header>
       <div className="relative h-full flex-1 flex flex-col">
         <Outlet />
@@ -33,9 +31,7 @@ export default function MainMenuBar() {
       </div>
       {/* Mobile Bottom*/}
       <div>
-        <nav className="sm:hidden">
-          <div>{"menu options"}</div>
-        </nav>
+        <MobileNavBarBottom objLoggedUser={objLoggedUser} />
       </div>
     </div>
   );

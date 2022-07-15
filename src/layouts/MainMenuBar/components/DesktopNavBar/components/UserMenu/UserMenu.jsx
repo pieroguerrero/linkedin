@@ -4,6 +4,7 @@ import UserCard from "../../../../../../components/UserCard/UserCard";
 import { showNotAvailableToast } from "../../../../../../utilities";
 import { GroupTitle } from "./components/GroupTitle";
 import { LinkOption } from "./components/LinkOption";
+import { useLayoutEffect, useRef } from "react";
 
 /**
  *
@@ -13,11 +14,20 @@ import { LinkOption } from "./components/LinkOption";
  * @returns {JSX.Element}
  */
 export default function UserMenu({ objLoggedUser, handleCloseEvent }) {
+  const refDiv = useRef(null);
+  useLayoutEffect(() => {
+    if (refDiv && refDiv.current) {
+      refDiv.current.focus();
+    }
+  });
+
   const handleNotAvailableClick = () => {
     showNotAvailableToast();
   };
   return (
     <div
+      tabIndex={-1}
+      ref={refDiv}
       className="absolute w-[264px] h-[400px] rounded-lg rounded-tr-none shadow-lg bg-white top-[60px] right-0 z-10 "
       onBlur={handleCloseEvent}
     >

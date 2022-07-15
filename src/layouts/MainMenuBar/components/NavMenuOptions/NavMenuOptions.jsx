@@ -8,9 +8,10 @@ import { NavigationPaths, showNotAvailableToast } from "../../../../utilities";
  *
  * @param {Object} props
  * @param {User} props.objLoggedUser
+ * @param {boolean} [props.booMessaging=true]
  * @returns {JSX.Element}
  */
-export function NavMenuOptions({ objLoggedUser }) {
+export function NavMenuOptions({ objLoggedUser, booMessaging = true }) {
   const objLocation = useLocation();
   const handleHomeClick = () => {
     console.log("NavMenuOptions.Home:", objLoggedUser);
@@ -72,22 +73,24 @@ export function NavMenuOptions({ objLoggedUser }) {
           <path d="M17 6V5a3 3 0 00-3-3h-4a3 3 0 00-3 3v1H2v4a3 3 0 003 3h14a3 3 0 003-3V6zM9 5a1 1 0 011-1h4a1 1 0 011 1v1H9zm10 9a4 4 0 003-1.38V17a3 3 0 01-3 3H5a3 3 0 01-3-3v-4.38A4 4 0 005 14z"></path>
         </svg>
       </ButtonImageText>
-      <ButtonImageText
-        strTitle="Messaging"
-        handleClick={handleNotAvailableClick}
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          data-supported-dps="24x24"
-          fill="currentColor"
-          width="24"
-          height="24"
-          focusable="false"
+      {booMessaging ? (
+        <ButtonImageText
+          strTitle="Messaging"
+          handleClick={handleNotAvailableClick}
         >
-          <path d="M16 4H8a7 7 0 000 14h4v4l8.16-5.39A6.78 6.78 0 0023 11a7 7 0 00-7-7zm-8 8.25A1.25 1.25 0 119.25 11 1.25 1.25 0 018 12.25zm4 0A1.25 1.25 0 1113.25 11 1.25 1.25 0 0112 12.25zm4 0A1.25 1.25 0 1117.25 11 1.25 1.25 0 0116 12.25z"></path>
-        </svg>
-      </ButtonImageText>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            data-supported-dps="24x24"
+            fill="currentColor"
+            width="24"
+            height="24"
+            focusable="false"
+          >
+            <path d="M16 4H8a7 7 0 000 14h4v4l8.16-5.39A6.78 6.78 0 0023 11a7 7 0 00-7-7zm-8 8.25A1.25 1.25 0 119.25 11 1.25 1.25 0 018 12.25zm4 0A1.25 1.25 0 1113.25 11 1.25 1.25 0 0112 12.25zm4 0A1.25 1.25 0 1117.25 11 1.25 1.25 0 0116 12.25z"></path>
+          </svg>
+        </ButtonImageText>
+      ) : null}
       <ButtonImageText
         strTitle="Notifications"
         handleClick={handleNotAvailableClick}
