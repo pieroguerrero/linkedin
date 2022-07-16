@@ -2,6 +2,7 @@ import React from "react";
 import { FadeInAnimationDiv } from "../../../../components/FadeInAnimationDiv";
 import { RoundedTextButton } from "../../../../components/form-controls/RoundedTextButton";
 import { showCustomTextToast } from "../../../../utilities";
+import MediaQueries from "../../../../utilities/MediaQueries";
 import { HamburguerMenu } from "./components/HamburguerMenu";
 import { MenuBar } from "./components/MenuBar";
 
@@ -24,9 +25,12 @@ const LandingHeader = () => {
       <nav className="flex-1 pt-3 pb-2 flex items-center justify-between relative flex-nowrap w-full max-w-6xl px-4">
         {/* HorizontalMenu */}
         {/* Hambuger Menu */}
-        <div className="sm:hidden">
-          <HamburguerMenu />
-        </div>
+
+        {!MediaQueries.minWidth640px.matches ? (
+          <div>
+            <HamburguerMenu />
+          </div>
+        ) : null}
 
         <div>
           <svg
@@ -76,27 +80,30 @@ const LandingHeader = () => {
           </svg>
         </div>
         {/* NormalMenu */}
-        <FadeInAnimationDiv
-          className="hidden sm:flex sm:gap-1"
-          strDuration="duration-[4500ms]"
-        >
-          <div className="flex items-center justify-center">
-            <MenuBar />
-            <span className=" border-r border-color-gray-medium border-solid h-9"></span>
-          </div>
-          <RoundedTextButton
-            strColor="gray"
-            strText="Join now"
-            booBorder={false}
-            handleClick={onClickJoinNow}
-          />
-          <RoundedTextButton
-            strColor="blue"
-            strText="Sign in"
-            booBorder={true}
-            handleClick={onClicksignIn}
-          />
-        </FadeInAnimationDiv>
+        {MediaQueries.minWidth640px.matches ? (
+          <FadeInAnimationDiv
+            className="hidden sm:flex sm:gap-1"
+            strDuration="duration-[4500ms]"
+          >
+            <div className="flex items-center justify-center">
+              <MenuBar />
+              <span className=" border-r border-color-gray-medium border-solid h-9"></span>
+            </div>
+            <RoundedTextButton
+              strColor="gray"
+              strText="Join now"
+              booBorder={false}
+              handleClick={onClickJoinNow}
+            />
+            <RoundedTextButton
+              strColor="blue"
+              strText="Sign in"
+              booBorder={true}
+              handleClick={onClicksignIn}
+            />
+          </FadeInAnimationDiv>
+        ) : null}
+
         <div className="flex items-baseline justify-center sm:hidden">
           <RoundedTextButton
             strColor="blue"

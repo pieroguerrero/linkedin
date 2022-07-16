@@ -66,4 +66,24 @@ const showOveralWarning = () => {
     }
   );
 };
-export { showNotAvailableToast, showCustomTextToast, showOveralWarning };
+
+const showResponsiveWarning = () => {
+  toast.error("To see the responsive version, please reload the web :)", {
+    position: "top-center",
+    autoClose: 8000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: false,
+    pauseOnFocusLoss: false,
+    draggable: true,
+    progress: undefined,
+    rtl: false,
+    theme: "light",
+  });
+};
+export {
+  showNotAvailableToast,
+  showCustomTextToast,
+  showOveralWarning,
+  showResponsiveWarning,
+};
