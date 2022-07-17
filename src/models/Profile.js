@@ -19,6 +19,7 @@
  * @property {string} strAbout
  * @property {ProfileIntro} objIntro
  * @property {string} strProfilePicURL
+ * @property {string} strBgPicPath
  * @property {Date} dtCreatedOn
  * @property {boolean} booActive
  */
@@ -30,6 +31,7 @@
  * @param {string} strAbout
  * @param {ProfileIntro} objIntro
  * @param {string} strProfilePicURL
+ * @param {string} strBgPicPath
  * @param {Date} dtCreatedOn
  * @param {boolean} booActive
  * @returns {Profile}
@@ -41,6 +43,7 @@ function shapeProfile(
   strAbout,
   objIntro,
   strProfilePicURL,
+  strBgPicPath,
   dtCreatedOn,
   booActive
 ) {
@@ -51,6 +54,7 @@ function shapeProfile(
     strAbout,
     objIntro,
     strProfilePicURL,
+    strBgPicPath,
     dtCreatedOn,
     booActive,
   };

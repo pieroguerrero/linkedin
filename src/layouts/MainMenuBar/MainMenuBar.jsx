@@ -6,6 +6,7 @@ import { DesktopNavBar } from "./components/DesktopNavBar/";
 import { Outlet } from "react-router-dom";
 import { MobileNavBarTop } from "./components/MobileNavBar";
 import { MobileNavBarBottom } from "./components/MobileNavBar";
+import MediaQueries from "../../utilities/MediaQueries";
 
 /**
  * @returns {JSX.Element}
@@ -20,19 +21,23 @@ export default function MainMenuBar() {
   return (
     <div className="flex flex-col h-full min-h-screen">
       <header>
-        {/* Desktop */}
-        <DesktopNavBar objLoggedUser={objLoggedUser} />
-        {/* Mobile Top*/}
-        <MobileNavBarTop objLoggedUser={objLoggedUser} />
+        {/*Desktop or Mobile Top depending on the screen size*/}
+        {MediaQueries.minWidth640px.matches ? (
+          <DesktopNavBar objLoggedUser={objLoggedUser} />
+        ) : (
+          <MobileNavBarTop objLoggedUser={objLoggedUser} />
+        )}
       </header>
       <div className="relative h-full flex-1 flex flex-col">
         <Outlet />
         <div id="div-feed-portal"></div>
       </div>
       {/* Mobile Bottom*/}
-      <div>
-        <MobileNavBarBottom objLoggedUser={objLoggedUser} />
-      </div>
+      {!MediaQueries.minWidth640px.matches ? (
+        <div>
+          <MobileNavBarBottom objLoggedUser={objLoggedUser} />
+        </div>
+      ) : null}
     </div>
   );
 }

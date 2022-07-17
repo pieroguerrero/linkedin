@@ -17,6 +17,7 @@ export default function UserMenu({ objLoggedUser, handleCloseEvent }) {
   const refDiv = useRef(null);
   useLayoutEffect(() => {
     if (refDiv && refDiv.current) {
+      // @ts-ignore
       refDiv.current.focus();
     }
   });

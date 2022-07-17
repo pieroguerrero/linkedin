@@ -19,6 +19,7 @@ import { profileFromDataBase } from "../adapters";
  * @param {("education"|"skill"|"experience")[]} arrSections - Contains the list of section this Profile has configured with at least one register or document in the database.
  * @param {string} strAbout
  * @param {string} strProfilePicURL
+ * @param {string} strBgPicPath
  * @param {string} strFirstName
  * @param {string} strLastName
  * @param {string} strHeadline
@@ -33,6 +34,7 @@ const createProfile = async (
   arrSections,
   strAbout,
   strProfilePicURL,
+  strBgPicPath,
   strFirstName,
   strLastName,
   strHeadline,
@@ -55,6 +57,7 @@ const createProfile = async (
     strAbout,
     objProfileIntro,
     strProfilePicURL,
+    strBgPicPath,
     new Date(),
     true
   );

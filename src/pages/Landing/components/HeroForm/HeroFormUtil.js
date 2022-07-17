@@ -22,6 +22,7 @@ import {
   createProfile,
   getMainProfile,
 } from "../../../../services/serviceProfile";
+import { DatabaseValues } from "./../../../../utilities/DatabaseValues";
 
 // const promiseServAuth = (async () => {
 //   const { anonymousSignInUser, googleSignInUser, isNewUser } = await import(
@@ -87,7 +88,7 @@ const handleExistingUser = async (strUserId, dispatch, objNavigate) => {
   if (objExistingUser) {
     const objMainProfile = await getMainProfile(objExistingUser.strUserId);
     if (objMainProfile) {
-      objExistingUser.setProfile(objMainProfile);
+      objExistingUser.objProfile = objMainProfile;
       dispatch(setLoggedUser(objExistingUser));
       objNavigate(NavigationPaths.FEED, { state: { loggedIn: true } });
     }
@@ -99,6 +100,7 @@ const handleExistingUser = async (strUserId, dispatch, objNavigate) => {
  * @param {string} strUserOwnerId
  * @param {string} strAbout
  * @param {string} strProfilePicURL
+ * @param {string} strBgPicPath
  * @param {string} strFullName
  * @param {string} strHeadLine
  * @param {string} strCountry
@@ -110,6 +112,7 @@ const createDefaultProfile = async (
   strUserOwnerId,
   strAbout,
   strProfilePicURL,
+  strBgPicPath,
   strFullName,
   strHeadLine,
   strCountry,
@@ -127,6 +130,7 @@ const createDefaultProfile = async (
     [],
     strAbout,
     strProfilePicURL,
+    strBgPicPath,
     strFirstName,
     strLastName,
     strHeadLine,
@@ -169,10 +173,14 @@ const handleAuthUserInfo = async (
     );
 
     if (objCreatedUser) {
+      const strBgPicPath =
+        (await DatabaseValues)?.strDefaultBackgroundPicURL ?? "";
+
       const objProfile = await createDefaultProfile(
         objCreatedUser.strUserId,
         "",
         objCreatedUser.strProfilePicURL,
+        strBgPicPath,
         objCreatedUser.strFullName,
         Constants.ProfileHeadLineEmptyName,
         Constants.ProfileCountryEmptyName,
@@ -181,7 +189,7 @@ const handleAuthUserInfo = async (
       );
 
       if (objProfile) {
-        objCreatedUser.setProfile(objProfile);
+        objCreatedUser.objProfile = objProfile;
         dispatch(setLoggedUser(objCreatedUser));
         objNavigate(NavigationPaths.FEED, { state: { loggedIn: true } });
       }

@@ -16,7 +16,6 @@ import { Profile } from "./Profile";
  * @property {Date} dtCreatedOn
  * @property {boolean} booActive
  * @property {Profile | null} objProfile
- * @property {function(Profile):void} setProfile
  */
 
 /**
@@ -48,9 +47,6 @@ function shapeUser(
     dtCreatedOn,
     booActive,
     objProfile: null,
-    setProfile(value) {
-      this.objProfile = value;
-    },
   };
 }
 

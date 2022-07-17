@@ -17,6 +17,7 @@ const profileFromDataBase = (objRawProfile) => {
       objRawProfile.strAbout,
       objProfileIntro,
       objRawProfile.strProfilePicURL,
+      objRawProfile.strBgPicPath,
       objRawProfile.dtCreatedOn.toDate(),
       objRawProfile.booActive
     );

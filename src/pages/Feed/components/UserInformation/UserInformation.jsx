@@ -1,12 +1,19 @@
-export default function UserInformation() {
+import { UserInformationMain } from "./components/UserInformationMain";
+// eslint-disable-next-line no-unused-vars
+import { User } from "../../../../models";
+import { UserInformationMainAdditional } from "./components/UserInformationAdditional";
+
+/**
+ *
+ * @param {Object} props
+ * @param {User} props.objLoggedUser
+ * @returns {JSX.Element}
+ */
+export default function UserInformation({ objLoggedUser }) {
   return (
     <div className=" flex flex-col gap-2">
-      <div className="w-[225px] h-[334px] rounded-lg bg-white shadow-sm">
-        information
-      </div>
-      <div className="w-[225px] h-[149px] rounded-lg bg-white shadow-sm">
-        additional social info
-      </div>
+      <UserInformationMain objLoggedUser={objLoggedUser} />
+      <UserInformationMainAdditional objLoggedUser={objLoggedUser} />
     </div>
   );
 }
