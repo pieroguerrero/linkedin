@@ -22,7 +22,7 @@ export default function Feed() {
 
         {MediaQueries.minWidth640px.matches ? (
           <aside>
-            <AdsContainer />
+            <AdsContainer objLoggedUser={objLoggedUser} />
           </aside>
         ) : null}
       </div>
