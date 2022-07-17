@@ -17,7 +17,7 @@ export default function Feed() {
           </div>
         ) : null}
         <main>
-          <NewsFeed />
+          <NewsFeed objLoggedUser={objLoggedUser} />
         </main>
 
         {MediaQueries.minWidth640px.matches ? (

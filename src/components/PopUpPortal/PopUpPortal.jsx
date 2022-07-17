@@ -10,7 +10,6 @@ import { Constants } from "../../utilities/";
  */
 const PopUpPortal = ({ children }) => {
   useLayoutEffect(() => {
-    console.log("assigning overflow");
     document.querySelector("body")?.classList.add("overflow-hidden");
     return () => {
       document.querySelector("body")?.classList.remove("overflow-hidden");
