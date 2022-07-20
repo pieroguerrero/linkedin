@@ -46,7 +46,11 @@ export default function AddPostPopUp({ objLoggedUser, handleCloseEvent }) {
             <h2 className=" text-color-text-darker font-normal text-[22px] leading-7">
               Create a post
             </h2>
-            <button type="button" className=" text-color-text">
+            <button
+              type="button"
+              onClick={handleCloseEvent}
+              className=" text-color-text"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
