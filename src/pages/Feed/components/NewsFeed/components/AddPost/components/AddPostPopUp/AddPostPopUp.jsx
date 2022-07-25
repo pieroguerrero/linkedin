@@ -114,7 +114,7 @@ export default function AddPostPopUp({ objLoggedUser, handleCloseEvent }) {
               </button>
             </div>
           </div>
-          <TextConent />
+          <TextConent objLoggedUser={objLoggedUser} />
           <div></div>
         </div>
       </div>

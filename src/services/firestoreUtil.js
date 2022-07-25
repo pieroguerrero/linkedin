@@ -31,7 +31,6 @@ import {
  */
 const createWithId = async (objData, strId, ...arrPath) => {
   const arrNewPath = [...arrPath, strId];
-  //const doc = await proDoc;
   try {
     const objDocReference = doc(appDB, arrNewPath[0], ...arrNewPath.slice(1));
     await setDoc(objDocReference, objData);
@@ -39,6 +38,48 @@ const createWithId = async (objData, strId, ...arrPath) => {
   } catch (error) {
     console.error("firestoreUtil.create: ", error);
     return false;
+  }
+};
+
+/**
+ *
+ * @param {Object} objDocReference
+ * @param {Object} objData
+ * @returns {Promise<boolean>}
+ */
+const saveDoc = async (objDocReference, objData) => {
+  try {
+    await setDoc(objDocReference, objData);
+    return true;
+  } catch (error) {
+    console.error("firestoreUtil.saveDoc: ", error);
+    return false;
+  }
+};
+
+/**
+ * Creates a document with a Custom Id
+ * @param {string[]} arrPath - Path to select the collection where the new Document is going to be created.
+ * @returns
+ */
+const getDocumentCreator = (...arrPath) => {
+  try {
+    const collectionRef =
+      arrPath.length > 1
+        ? collection(appDB, arrPath[0], ...arrPath.slice(1))
+        : collection(appDB, arrPath[0]);
+
+    const objDocReference = doc(collectionRef);
+    return {
+      strNewId: objDocReference.id,
+      /**
+       * @type {function(Object):Promise<boolean>}
+       */
+      saveDoc: saveDoc.bind(null, objDocReference),
+    };
+  } catch (error) {
+    console.error("firestoreUtil.getDocumentCreator: ", error);
+    return null;
   }
 };
 
@@ -126,4 +167,11 @@ const selectAll = async (arrConstraints, ...arrPathToCollection) => {
   }
 };
 
-export { createWithId, create, selectById, selectAll, where };
+export {
+  createWithId,
+  create,
+  selectById,
+  selectAll,
+  where,
+  getDocumentCreator,
+};

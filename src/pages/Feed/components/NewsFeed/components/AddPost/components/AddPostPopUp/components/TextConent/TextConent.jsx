@@ -1,15 +1,47 @@
-import { useRef, useState } from "react";
-import { showNotAvailableToast } from "../../../../../../../../../../utilities";
+import { useLayoutEffect, useRef, useState } from "react";
+// eslint-disable-next-line no-unused-vars
+import { User } from "../../../../../../../../../../models";
+import { createPost } from "../../../../../../../../../../services/servicePost";
+import {
+  MediaTypes,
+  showNotAvailableToast,
+} from "../../../../../../../../../../utilities";
 import TextContentImageButton from "./TextContentImageButton";
 
-export default function TextConent() {
+/**
+ *
+ * @param {Object} props
+ * @param {User} props.objLoggedUser
+ * @returns {JSX.Element}
+ */
+export default function TextConent({ objLoggedUser }) {
   // eslint-disable-next-line no-unused-vars
   const [enabledPostButton, setEnabledPostButton] = useState(false);
+  // eslint-disable-next-line no-unused-vars
+  const [contentType, setContentType] = useState(MediaTypes.NONE);
   const refDivText = useRef(null);
-  //const [innerHtml, setInnerHtml] = useState();
+
+  useLayoutEffect(() => {
+    if (refDivText && refDivText.current) {
+      refDivText.current.focus();
+    }
+  });
 
   const handleOnPostClick = () => {
-    console.log("Post click");
+    const strMediaURL = ""; //To get the correct media URL based on the 'contentype'
+    createPost(
+      objLoggedUser.strUserId,
+      refDivText.current.textContent,
+      // @ts-ignore
+      contentType,
+      strMediaURL
+    )
+      .then((objPost) => {
+        console.log("handleOnPostClick", objPost);
+      })
+      .catch((error) => {
+        console.error("TextContent.handleOnPostClick", error);
+      });
   };
 
   const handleOnChangeText = (e) => {
@@ -23,12 +55,7 @@ export default function TextConent() {
   };
 
   return (
-    <div className="  flex flex-col">
-      {/* <textarea
-        className="p-0 focus:ring-transparent outline-none border-none bg-transparent resize-none overflow-auto shadow-none leading-[22px] text-[18px] h-24"
-        placeholder="What do you want to talk about?"
-      ></textarea> */}
-
+    <div className="flex flex-col">
       <div
         ref={refDivText}
         onInput={handleOnChangeText}
