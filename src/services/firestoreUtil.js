@@ -10,6 +10,9 @@ import {
   where,
   query,
   getDocs,
+  startAfter,
+  orderBy,
+  limit,
 } from "firebase/firestore";
 
 // const proDoc = (async () => {
@@ -166,12 +169,65 @@ const selectAll = async (arrConstraints, ...arrPathToCollection) => {
     return null;
   }
 };
+/**
+ *
+ * @param {object} objStartKey
+ * @param {number} intLimitNumber
+ * @param {string} strOrderByFieldName
+ * @param {QueryConstraint[]} arrWhereConstraints
+ * @param {function(Object):Object} funFromFirestore
+ * @param {string[]} arrPathToCollection - Path to select the collection where the Document is located.
+ * @returns
+ */
+const getBatch = async (
+  objStartKey,
+  strOrderByFieldName,
+  intLimitNumber,
+  arrWhereConstraints,
+  funFromFirestore,
+  ...arrPathToCollection
+) => {
+  try {
+    const collectionRef =
+      arrPathToCollection.length > 1
+        ? collection(
+            appDB,
+            arrPathToCollection[0],
+            ...arrPathToCollection.slice(1)
+          )
+        : collection(appDB, arrPathToCollection[0]);
+
+    const queryNextBatch = query(
+      collectionRef,
+      ...arrWhereConstraints,
+      orderBy(strOrderByFieldName),
+      startAfter(objStartKey), //TODO:check how this can be changed to cover the case of the first load
+      limit(intLimitNumber)
+    );
+
+    const querySnapshot = await getDocs(queryNextBatch);
+
+    const arrFormatedData = querySnapshot.docs.map((objDocData) =>
+      funFromFirestore(objDocData.data())
+    );
+
+    return arrFormatedData;
+  } catch (error) {
+    console.error(error);
+  }
+
+  return null;
+};
 
 export {
   createWithId,
   create,
   selectById,
   selectAll,
+  getBatch,
   where,
   getDocumentCreator,
+  startAfter,
+  orderBy,
+  limit,
 };

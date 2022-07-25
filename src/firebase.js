@@ -17,5 +17,4 @@ initializeApp(config);
 const appDB = getFirestore();
 const appStorage = getStorage();
 const appAuthProvider = getAuth();
-
 export { appDB, appStorage, appAuthProvider };
