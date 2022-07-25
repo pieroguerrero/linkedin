@@ -1,7 +1,6 @@
 import { useLayoutEffect, useRef, useState } from "react";
 // eslint-disable-next-line no-unused-vars
 import { User } from "../../../../../../../../../../models";
-import { createPost } from "../../../../../../../../../../services/servicePost";
 import {
   MediaTypes,
   showNotAvailableToast,
@@ -27,21 +26,26 @@ export default function TextConent({ objLoggedUser }) {
     }
   });
 
-  const handleOnPostClick = () => {
-    const strMediaURL = ""; //To get the correct media URL based on the 'contentype'
-    createPost(
-      objLoggedUser.strUserId,
-      refDivText.current.textContent,
-      // @ts-ignore
-      contentType,
-      strMediaURL
-    )
-      .then((objPost) => {
-        console.log("handleOnPostClick", objPost);
-      })
-      .catch((error) => {
-        console.error("TextContent.handleOnPostClick", error);
-      });
+  const handleOnPostClick = async () => {
+    //To get the correct media URL based on the 'contentype'
+    const strMediaURL = "";
+
+    const { createPost } = await import(
+      "../../../../../../../../../../services/servicePost"
+    );
+
+    try {
+      const objPost = await createPost(
+        objLoggedUser.strUserId,
+        refDivText.current.textContent,
+        // @ts-ignore
+        contentType,
+        strMediaURL
+      );
+      console.log("handleOnPostClick", objPost);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const handleOnChangeText = (e) => {
