@@ -1,8 +1,9 @@
 import { shapePost } from "../models";
 import { CollectionNames } from "../utilities";
-import { getDocumentCreator } from "./firestoreUtil";
+import { getBatch, getDocumentCreator, where } from "./firestoreUtil";
 // eslint-disable-next-line no-unused-vars
 import { Post } from "../models";
+import { postFromDatabase } from "../adapters/PostAdapter";
 
 /**
  * @module ServicePost
@@ -42,18 +43,44 @@ const createPost = async (strUserId, strText, strMediaType, strMediaURL) => {
 
   return null;
 };
+/**
+ *
+ * @param {object} [objStartKey=null] - NULL for the first batch of Documents
+ * @returns {Promise<Post[] | null>}
+ */
 
-// eslint-disable-next-line no-unused-vars
-const getNextBatch = async (key) => {
+const getNextBatch = async (objStartKey = null) => {
   try {
     //TODO: use the firestoreUtil.getBatch method to get the data from the posts
     //Detecting when user scrolls to bottom of div with React js:
     //https://stackoverflow.com/questions/45585542/detecting-when-user-scrolls-to-bottom-of-div-with-react-js
     //Inifinite Scroll: https://dev.to/hadi/infinite-scroll-in-firebase-firestore-and-react-js-55g3
     //https://firebase.google.com/docs/firestore/query-data/query-cursors
-  } catch (e) {
-    console.log(e);
+
+    const arrQuerySnapDocs = await getBatch(
+      CollectionNames.POSTS,
+      objStartKey,
+      "dtCreatedOn",
+      2,
+      [where("booActive", "==", true)]
+    );
+    if (arrQuerySnapDocs) {
+      const arrFormatedData = arrQuerySnapDocs.map((objDocData) => {
+        const objPost = postFromDatabase(objDocData.data());
+        if (objPost) {
+          return objPost;
+        }
+
+        throw new Error("servicePost.getNextBatch: objPost cannot be null.");
+      });
+
+      return arrFormatedData;
+    }
+  } catch (error) {
+    console.error(error);
   }
+
+  return null;
 };
 
 export { createPost, getNextBatch };
