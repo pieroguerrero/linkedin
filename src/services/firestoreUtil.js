@@ -194,7 +194,7 @@ const getBatch = async (
       collectionRef,
       ...arrWhereConstraints,
       orderBy(strOrderByFieldName),
-      ...(objStartKey ? [startAfter(objStartKey)] : []), //TODO:check how this can be changed to cover the case of the first load
+      ...(objStartKey ? [startAfter(objStartKey)] : []),
       limit(intLimitNumber)
     );
 

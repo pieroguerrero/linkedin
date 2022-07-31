@@ -1,6 +1,7 @@
 import { AddPost } from "./components/AddPost";
 // eslint-disable-next-line no-unused-vars
 import { User } from "../../../../models";
+import { PostList } from "./components/PostsList";
 
 /**
  *
@@ -14,7 +15,7 @@ export default function NewsFeed({ objLoggedUser }) {
       <AddPost objLoggedUser={objLoggedUser} />
       <div className="w-[540px] flex flex-col">
         <div>{"filter"}</div>
-        <div className="bg-white">{"result posts"}</div>
+        <PostList objLoggedUser={objLoggedUser} />
       </div>
     </div>
   );

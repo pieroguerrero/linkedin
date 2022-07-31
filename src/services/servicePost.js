@@ -61,7 +61,7 @@ const getNextBatch = async (objStartKey = null) => {
       CollectionNames.POSTS,
       objStartKey,
       "dtCreatedOn",
-      2,
+      10,
       [where("booActive", "==", true)]
     );
     if (arrQuerySnapDocs) {

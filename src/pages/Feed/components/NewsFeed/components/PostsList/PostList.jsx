@@ -2,8 +2,17 @@ import { useEffect, useState } from "react";
 import { getNextBatch } from "../../../../../../services/servicePost";
 // eslint-disable-next-line no-unused-vars
 import { Post } from "../../../../../../models";
+// eslint-disable-next-line no-unused-vars
+import { User } from "../../../../../../models";
+import PostEntry from "./components/PostEntry";
 
-export default function PostList() {
+/**
+ *
+ * @param {Object} props
+ * @param {User} props.objLoggedUser
+ * @returns {JSX.Element}
+ */
+export default function PostList({ objLoggedUser }) {
   //TODO: Finish the infinite scroll
   /**
    * @type {Post[]}
@@ -21,9 +30,13 @@ export default function PostList() {
     });
   }, [dtStartPoint]);
   return (
-    <ul>
+    <ul className=" flex flex-col gap-2">
       {arrPosts.map((objPost) => {
-        return <li key={objPost.strPostId}>{objPost.strText}</li>;
+        return (
+          <li key={objPost.strPostId}>
+            <PostEntry objLoggedUser={objLoggedUser} objPost={objPost} />
+          </li>
+        );
       })}
     </ul>
   );
