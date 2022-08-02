@@ -14,11 +14,11 @@ import { TextConent } from "./components/TextConent";
  */
 // eslint-disable-next-line no-unused-vars
 export default function AddPostPopUp({ objLoggedUser, handleCloseEvent }) {
+  const refPopUp = useRef(null);
+
   const handleNotAvailableClick = () => {
     showNotAvailableToast();
   };
-
-  const refPopUp = useRef(null);
 
   useLayoutEffect(() => {
     setTimeout(() => {

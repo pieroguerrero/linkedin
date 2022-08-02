@@ -4,6 +4,7 @@ import { User } from "../../../../../../../models";
 import { Post } from "../../../../../../../models";
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
 import { showNotAvailableToast } from "../../../../../../../utilities";
+import { useLayoutEffect, useRef } from "react";
 /**
  *
  * @param {Object} props
@@ -12,6 +13,13 @@ import { showNotAvailableToast } from "../../../../../../../utilities";
  * @returns {JSX.Element}
  */
 export default function PostEntry({ objLoggedUser, objPost }) {
+  const refDivText = useRef(null);
+  useLayoutEffect(() => {
+    if (refDivText) {
+      refDivText.current.innerText = objPost.strText; //sanitizeHTML(objPost.strText);
+    }
+  }, []);
+
   return (
     <div className=" bg-white h-fit rounded-lg border shadow-sm">
       <div className="flex px-4 justify-between items-start">
@@ -84,7 +92,10 @@ export default function PostEntry({ objLoggedUser, objPost }) {
           </svg>
         </button>
       </div>
-      <div>{objPost.strText}</div>
+      <div
+        ref={refDivText}
+        // dangerouslySetInnerHTML={{ __html: sanitizeHTML(objPost.strText) }}
+      ></div>
       <div className="flex justify-between">
         <div>{"Likes count"}</div> <div>{"Comments Count"}</div>{" "}
       </div>

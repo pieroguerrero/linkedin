@@ -18,7 +18,12 @@ export default function TextConent({ objLoggedUser }) {
   const [enabledPostButton, setEnabledPostButton] = useState(false);
   // eslint-disable-next-line no-unused-vars
   const [contentType, setContentType] = useState(MediaTypes.NONE);
-  const refDivText = useRef(null);
+
+  /**
+   * @type {HTMLInputElement}
+   */
+  const emtpyInput = null;
+  const refDivText = useRef(emtpyInput);
 
   useLayoutEffect(() => {
     if (refDivText && refDivText.current) {
@@ -33,11 +38,10 @@ export default function TextConent({ objLoggedUser }) {
     const { createPost } = await import(
       "../../../../../../../../../../services/servicePost"
     );
-
     try {
       const objPost = await createPost(
         objLoggedUser.strUserId,
-        refDivText.current.textContent,
+        refDivText.current.innerText,
         // @ts-ignore
         contentType,
         strMediaURL

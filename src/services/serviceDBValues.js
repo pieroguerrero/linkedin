@@ -1,9 +1,7 @@
-import {
-  shapeDBDefaultValues,
-  // eslint-disable-next-line no-unused-vars
-  DefaultDatabaseValues,
-} from "../models/DefaultValues";
-import { CollectionNames, Constants } from "../utilities";
+// eslint-disable-next-line no-unused-vars
+import { shapeDBDefaultValues, DefaultDatabaseValues } from "../models";
+import { Constants } from "../utilities";
+import { CollectionNames } from "../utilities/Enums";
 import { selectById } from "./firestoreUtil";
 
 /**
