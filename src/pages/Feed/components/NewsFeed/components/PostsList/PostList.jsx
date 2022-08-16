@@ -22,6 +22,8 @@ export default function PostList({ objLoggedUser }) {
   // eslint-disable-next-line no-unused-vars
   const [dtStartPoint, setDtStartPoint] = useState(null);
 
+  //TODO:move this logic to the parent (NewsFeed) so when a new post is added it can be added to the list.
+  //TODO: Also is needed to reorder the list in descendent order
   useEffect(() => {
     getNextBatch(objLoggedUser.strUserId, dtStartPoint).then(
       (arrPostsResponse) => {
@@ -65,6 +67,9 @@ export default function PostList({ objLoggedUser }) {
               objLoggedUser={objLoggedUser}
               objCreatorProfile={objPostProfile.objProfile}
               objPost={objPostProfile.objPost}
+              intCommentsCount={0}
+              intLikesCount={0}
+              intSharesCount={0}
             />
           </li>
         );

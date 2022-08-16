@@ -5,18 +5,25 @@ import { Post, User } from "../../../../../../../models";
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
 import { showNotAvailableToast } from "../../../../../../../utilities";
 import { useLayoutEffect, useRef } from "react";
+import InteractionCounter from "./InteractionCounter";
 /**
  *
  * @param {Object} props
  * @param {Profile} props.objCreatorProfile
  * @param {User} props.objLoggedUser
  * @param {Post} props.objPost
+ * @param {number} props.intLikesCount
+ * @param {number} props.intCommentsCount
+ * @param {number} props.intSharesCount
  * @returns {JSX.Element}
  */
 export default function PostEntry({
   objLoggedUser,
   objCreatorProfile,
   objPost,
+  intLikesCount,
+  intCommentsCount,
+  intSharesCount,
 }) {
   const refDivText = useRef(null);
   useLayoutEffect(() => {
@@ -27,7 +34,7 @@ export default function PostEntry({
 
   return (
     <div className=" bg-white h-fit rounded-lg border shadow-sm">
-      <div className="flex px-4 justify-between items-start">
+      <div className="flex px-4 justify-between items-start m-2">
         <button
           type="button"
           onClick={showNotAvailableToast}
@@ -104,12 +111,13 @@ export default function PostEntry({
         </button>
       </div>
       <div
+        className=" px-4 text-[15px] text-color-text-darker font-normal leading-5"
         ref={refDivText}
-        // dangerouslySetInnerHTML={{ __html: sanitizeHTML(objPost.strText) }}
       ></div>
-      <div className="flex justify-between">
-        <div>{"Likes count"}</div> <div>{"Comments Count"}</div>{" "}
-      </div>
+      {intLikesCount > 0 || intCommentsCount > 0 || intSharesCount > 0 ? (
+        <InteractionCounter />
+      ) : null}
+
       <div>{"Comment actions"}</div>
     </div>
   );
