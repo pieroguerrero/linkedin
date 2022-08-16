@@ -208,6 +208,28 @@ const getBatch = async (
   return null;
 };
 
+/**
+ * Selects all the documents in a Collection Group filtered by specific constraints.
+ * @param {QueryConstraint[]} arrConstraints
+ * @param {string} strCollectionGroup - Path to select the collection group.
+ * @returns
+ */
+const selectCollectionGroup = async (arrConstraints, strCollectionGroup) => {
+  try {
+    const collectionRef = collectionGroup(appDB, strCollectionGroup);
+
+    const querySnapshot = await getDocs(
+      query(collectionRef, ...arrConstraints)
+    );
+
+    return querySnapshot.docs;
+  } catch (error) {
+    console.error(error);
+  }
+
+  return null;
+};
+
 export {
   createWithId,
   create,
@@ -219,4 +241,5 @@ export {
   startAfter,
   orderBy,
   limit,
+  selectCollectionGroup,
 };

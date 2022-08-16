@@ -46,10 +46,12 @@ const createPost = async (strUserId, strText, strMediaType, strMediaURL) => {
 /**
  *
  * @param {object} [objStartKey=null] - NULL for the first batch of Documents
+ * @param {string} strUserId
  * @returns {Promise<Post[] | null>}
  */
 
-const getNextBatch = async (objStartKey = null) => {
+// eslint-disable-next-line no-unused-vars
+const getNextBatch = async (strUserId, objStartKey = null) => {
   try {
     //TODO: use the firestoreUtil.getBatch method to get the data from the posts
     //Detecting when user scrolls to bottom of div with React js:

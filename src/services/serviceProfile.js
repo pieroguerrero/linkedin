@@ -6,7 +6,12 @@ import {
 import { CollectionNames } from "../utilities/Enums";
 // eslint-disable-next-line no-unused-vars
 import { Profile } from "../models";
-import { createWithId, selectAll, where } from "./firestoreUtil";
+import {
+  createWithId,
+  selectAll,
+  selectCollectionGroup,
+  where,
+} from "./firestoreUtil";
 import { profileFromDataBase } from "../adapters";
 
 /**
@@ -59,7 +64,8 @@ const createProfile = async (
     strProfilePicURL,
     strBgPicPath,
     new Date(),
-    true
+    true,
+    strUserOwnerId
   );
 
   if (
@@ -101,4 +107,42 @@ const getMainProfile = async (strOserOwnerId) => {
   return null;
 };
 
-export { createProfile, getMainProfile };
+/**
+ * Retreives the list of Active and Primary profiles that belong to certaing Users
+ * @param {string[]} arrUserIds - Array of User Ids whose Profiles have to be retrived
+ * @returns
+ */
+const getMainProfileAll = async (arrUserIds) => {
+  const arrQueryConstraint = [
+    where("booActive", "==", true),
+    where("booPrimary", "==", true),
+    where("strUserId", "in", arrUserIds),
+  ];
+  try {
+    const arrQuerySnapDocs = await selectCollectionGroup(
+      arrQueryConstraint,
+      CollectionNames.PROFILES
+    );
+
+    if (arrQuerySnapDocs) {
+      const arrProfiles = arrQuerySnapDocs.map((objRawProfile) => {
+        const objProfile = profileFromDataBase(objRawProfile.data());
+        if (objProfile) {
+          return objProfile;
+        }
+
+        throw new Error(
+          "serviceProfile.getMainProfileAll: objProfile cannot be null."
+        );
+      });
+
+      return arrProfiles;
+    }
+  } catch (error) {
+    console.error(error);
+  }
+
+  return null;
+};
+
+export { createProfile, getMainProfile, getMainProfileAll };

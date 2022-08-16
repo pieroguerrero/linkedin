@@ -1,21 +1,26 @@
 // eslint-disable-next-line no-unused-vars
-import { User } from "../../../../../../../models";
+import { Profile } from "../../../../../../../models";
 // eslint-disable-next-line no-unused-vars
-import { Post } from "../../../../../../../models";
+import { Post, User } from "../../../../../../../models";
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
 import { showNotAvailableToast } from "../../../../../../../utilities";
 import { useLayoutEffect, useRef } from "react";
 /**
  *
  * @param {Object} props
+ * @param {Profile} props.objCreatorProfile
  * @param {User} props.objLoggedUser
  * @param {Post} props.objPost
  * @returns {JSX.Element}
  */
-export default function PostEntry({ objLoggedUser, objPost }) {
+export default function PostEntry({
+  objLoggedUser,
+  objCreatorProfile,
+  objPost,
+}) {
   const refDivText = useRef(null);
   useLayoutEffect(() => {
-    if (refDivText) {
+    if (refDivText && refDivText.current) {
       refDivText.current.innerText = objPost.strText; //sanitizeHTML(objPost.strText);
     }
   }, []);
@@ -33,14 +38,20 @@ export default function PostEntry({ objLoggedUser, objPost }) {
               loading="lazy"
               referrerPolicy="no-referrer"
               className="w-12 h-auto rounded-full"
-              src={objLoggedUser.strProfilePicURL}
-              alt={objLoggedUser.strFullName}
+              src={objCreatorProfile.strProfilePicURL}
+              alt={
+                objCreatorProfile.objIntro.strFirstName +
+                " " +
+                objCreatorProfile.objIntro.strLastName
+              }
             />
           </div>
           <div className="flex flex-col">
             <div className="flex gap-1">
               <p className="text-color-text-darker capitalize font-bold text-base leading-5">
-                {objLoggedUser.strFullName}
+                {objCreatorProfile.objIntro.strFirstName +
+                  " " +
+                  objCreatorProfile.objIntro.strLastName}
               </p>
               <p className=" text-color-text">
                 {"• " +
@@ -50,7 +61,7 @@ export default function PostEntry({ objLoggedUser, objPost }) {
               </p>
             </div>
             <p className="text-color-text text-sm leading-4">
-              {objLoggedUser.objProfile?.objIntro.strHeadline}
+              {objCreatorProfile.objIntro.strHeadline}
             </p>
             <div className="flex gap-1 items-center text-color-text">
               <p className=" text-sm">

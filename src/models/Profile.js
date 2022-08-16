@@ -22,6 +22,7 @@
  * @property {string} strBgPicPath
  * @property {Date} dtCreatedOn
  * @property {boolean} booActive
+ * @property {string} strUserId
  */
 
 /**
@@ -34,6 +35,7 @@
  * @param {string} strBgPicPath
  * @param {Date} dtCreatedOn
  * @param {boolean} booActive
+ * @param {string} strUserOwnerId
  * @returns {Profile}
  */
 function shapeProfile(
@@ -45,7 +47,8 @@ function shapeProfile(
   strProfilePicURL,
   strBgPicPath,
   dtCreatedOn,
-  booActive
+  booActive,
+  strUserOwnerId
 ) {
   return {
     strProfileId,
@@ -57,6 +60,7 @@ function shapeProfile(
     strBgPicPath,
     dtCreatedOn,
     booActive,
+    strUserId: strUserOwnerId,
   };
 }
 

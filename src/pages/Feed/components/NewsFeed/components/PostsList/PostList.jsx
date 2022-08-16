@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import { getNextBatch } from "../../../../../../services/servicePost";
 // eslint-disable-next-line no-unused-vars
-import { Post } from "../../../../../../models";
-// eslint-disable-next-line no-unused-vars
-import { User } from "../../../../../../models";
+import { Post, User, Profile } from "../../../../../../models";
 import PostEntry from "./components/PostEntry";
+import { getMainProfileAll } from "../../../../../../services/serviceProfile";
 
 /**
  *
@@ -15,30 +14,58 @@ import PostEntry from "./components/PostEntry";
 export default function PostList({ objLoggedUser }) {
   //TODO: Finish the infinite scroll
   /**
-   * @type {Post[]}
+   * @type {Array<{objPost:Post,objProfile: Profile}>}
    */
   const arrInitialValue = [];
-  const [arrPosts, setArrPosts] = useState(arrInitialValue);
+  const [arrPostsProfile, setArrPostsProfile] = useState(arrInitialValue);
+
   // eslint-disable-next-line no-unused-vars
   const [dtStartPoint, setDtStartPoint] = useState(null);
 
   useEffect(() => {
-    getNextBatch(dtStartPoint).then((arrPostsResponse) => {
-      if (arrPostsResponse) {
-        //TODO: once all the posts are queried, we need to get the profile information from those users that created the posts. To do that, we will query the main profile information by using some sort of query like the one apperas in this article: https://medium.com/firebase-developers/how-to-query-collections-in-firestore-under-a-certain-path-6a0d686cebd2
+    getNextBatch(objLoggedUser.strUserId, dtStartPoint).then(
+      (arrPostsResponse) => {
+        if (arrPostsResponse) {
+          const arrUserOwnerIds = arrPostsResponse.map(
+            (objPost) => objPost.strUserId
+          );
 
-        //We will need to create a CollectionGroup for profiles and then with the 'FieldPath.documentId() in [userid1, userid2, userid3, etc]' query constraint, try to select only the users that appear in the Posts array we just queried
+          getMainProfileAll(Array.from(new Set(arrUserOwnerIds))).then(
+            (arrProfilesResponse) => {
+              if (arrProfilesResponse) {
+                const arrPostProfile = arrPostsResponse.map((objPost) => {
+                  const arrProfiles = arrProfilesResponse.filter(
+                    (objProfile) => objProfile.strUserId === objPost.strUserId
+                  );
 
-        setArrPosts(arrPostsResponse);
+                  if (arrProfiles.length === 1) {
+                    return { objPost, objProfile: arrProfiles[0] };
+                  }
+
+                  throw new Error(
+                    "PostList.useEffect: Every Post must have a corresponding Profile object."
+                  );
+                });
+
+                setArrPostsProfile(arrPostProfile);
+              }
+            }
+          );
+        }
       }
-    });
+    );
   }, [dtStartPoint]);
+
   return (
     <ul className=" flex flex-col gap-2">
-      {arrPosts.map((objPost) => {
+      {arrPostsProfile.map((objPostProfile) => {
         return (
-          <li key={objPost.strPostId}>
-            <PostEntry objLoggedUser={objLoggedUser} objPost={objPost} />
+          <li key={objPostProfile.objPost.strPostId}>
+            <PostEntry
+              objLoggedUser={objLoggedUser}
+              objCreatorProfile={objPostProfile.objProfile}
+              objPost={objPostProfile.objPost}
+            />
           </li>
         );
       })}
