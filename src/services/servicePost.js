@@ -1,6 +1,6 @@
 import { shapePost } from "../models";
 import { CollectionNames } from "../utilities";
-import { getBatch, getDocumentCreator, where } from "./firestoreUtil";
+import { getBatch, getDocumentCreator, where, orderBy } from "./firestoreUtil";
 // eslint-disable-next-line no-unused-vars
 import { Post } from "../models";
 import { postFromDatabase } from "../adapters/PostAdapter";
@@ -62,9 +62,8 @@ const getNextBatch = async (strUserId, objStartKey = null) => {
     const arrQuerySnapDocs = await getBatch(
       CollectionNames.POSTS,
       objStartKey,
-      "dtCreatedOn",
       100,
-      [where("booActive", "==", true)]
+      [where("booActive", "==", true), orderBy("dtCreatedOn", "desc")]
     );
     if (arrQuerySnapDocs) {
       const arrFormatedData = arrQuerySnapDocs.map((objDocData) => {

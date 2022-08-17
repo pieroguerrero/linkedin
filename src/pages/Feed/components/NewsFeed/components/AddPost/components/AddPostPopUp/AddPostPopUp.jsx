@@ -10,10 +10,15 @@ import { TextConent } from "./components/TextConent";
  * @param {Object} props
  * @param {User} props.objLoggedUser
  * @param {function():void} props.handleCloseEvent
+ * @param {function(object):void} props.addPostToFeed
  * @returns {JSX.Element}
  */
-// eslint-disable-next-line no-unused-vars
-export default function AddPostPopUp({ objLoggedUser, handleCloseEvent }) {
+
+export default function AddPostPopUp({
+  objLoggedUser,
+  handleCloseEvent,
+  addPostToFeed,
+}) {
   const refPopUp = useRef(null);
 
   const handleNotAvailableClick = () => {
@@ -114,7 +119,11 @@ export default function AddPostPopUp({ objLoggedUser, handleCloseEvent }) {
               </button>
             </div>
           </div>
-          <TextConent objLoggedUser={objLoggedUser} />
+          <TextConent
+            objLoggedUser={objLoggedUser}
+            addPostToFeed={addPostToFeed}
+            handleClosePopUp={handleCloseEvent}
+          />
           <div></div>
         </div>
       </div>

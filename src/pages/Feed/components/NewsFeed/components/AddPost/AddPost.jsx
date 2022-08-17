@@ -8,9 +8,11 @@ import AddPostButton from "./components/AddPostButton/AddPostButton";
  *
  * @param {Object} props
  * @param {User} props.objLoggedUser
+ * @param {function(object):void} props.addPostToFeed
  * @returns {JSX.Element}
  */
-export default function AddPost({ objLoggedUser }) {
+// eslint-disable-next-line no-unused-vars
+export default function AddPost({ objLoggedUser, addPostToFeed }) {
   const [showPopUp, setShowPopUp] = useState(false);
 
   const handleAddPostClick = () => {
@@ -74,6 +76,7 @@ export default function AddPost({ objLoggedUser }) {
               <AddPostPopUp
                 handleCloseEvent={closePopUp}
                 objLoggedUser={objLoggedUser}
+                addPostToFeed={addPostToFeed}
               />
             </Suspense>
           );

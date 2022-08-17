@@ -175,25 +175,22 @@ const selectAll = async (arrConstraints, ...arrPathToCollection) => {
  *
  * @param {object} objStartKey
  * @param {number} intLimitNumber
- * @param {string} strOrderByFieldName
- * @param {QueryConstraint[]} arrWhereConstraints
+ * @param {QueryConstraint[]} arrQueryConstraints
  * @param {string} strCollectionGroup - Collection group where the Documents are located.
  * @returns
  */
 const getBatch = async (
   strCollectionGroup,
   objStartKey,
-  strOrderByFieldName,
   intLimitNumber,
-  arrWhereConstraints
+  arrQueryConstraints
 ) => {
   try {
     const collectionRef = collectionGroup(appDB, strCollectionGroup);
 
     const queryNextBatch = query(
       collectionRef,
-      ...arrWhereConstraints,
-      orderBy(strOrderByFieldName),
+      ...arrQueryConstraints,
       ...(objStartKey ? [startAfter(objStartKey)] : []),
       limit(intLimitNumber)
     );
@@ -240,6 +237,5 @@ export {
   getDocumentCreator,
   startAfter,
   orderBy,
-  limit,
   selectCollectionGroup,
 };

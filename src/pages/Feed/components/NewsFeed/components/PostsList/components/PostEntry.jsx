@@ -32,6 +32,9 @@ export default function PostEntry({
     }
   }, []);
 
+  //TODO: add the buttons to interact sotialy: LINK, COMMENT, SHARE, etc
+  //Give the final shape to the entry
+
   return (
     <div className=" bg-white h-fit rounded-lg border shadow-sm">
       <div className="flex px-4 justify-between items-start m-2">

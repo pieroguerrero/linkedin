@@ -11,9 +11,15 @@ import TextContentImageButton from "./TextContentImageButton";
  *
  * @param {Object} props
  * @param {User} props.objLoggedUser
+ * @param {function(object):void} props.addPostToFeed
+ * @param {function():void} props.handleClosePopUp
  * @returns {JSX.Element}
  */
-export default function TextConent({ objLoggedUser }) {
+export default function TextConent({
+  objLoggedUser,
+  addPostToFeed,
+  handleClosePopUp,
+}) {
   // eslint-disable-next-line no-unused-vars
   const [enabledPostButton, setEnabledPostButton] = useState(false);
   // eslint-disable-next-line no-unused-vars
@@ -46,7 +52,11 @@ export default function TextConent({ objLoggedUser }) {
         contentType,
         strMediaURL
       );
-      console.log("handleOnPostClick", objPost);
+
+      if (objPost) {
+        addPostToFeed({ objPost, objProfile: objLoggedUser.objProfile });
+        handleClosePopUp();
+      }
     } catch (error) {
       console.error(error);
     }
