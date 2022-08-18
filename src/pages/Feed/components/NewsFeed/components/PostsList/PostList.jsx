@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import { Post, User, Profile } from "../../../../../../models";
-import PostEntry from "./components/PostEntry";
+import PostEntry from "./components/PostEntry/PostEntry";
 
 /**
  *
