@@ -1,10 +1,10 @@
-import { AddPost } from "./components/AddPost";
-// eslint-disable-next-line no-unused-vars
-import { User, Post, Profile } from "../../../../models";
-import { PostList } from "./components/PostsList";
 import { useEffect, useState } from "react";
+// eslint-disable-next-line no-unused-vars
+import { Post, Profile, User } from "../../../../models";
 import { getNextBatch } from "../../../../services/servicePost";
 import { getMainProfileAll } from "../../../../services/serviceProfile";
+import { AddPost } from "./components/AddPost";
+import { PostList } from "./components/PostsList";
 
 /**
  *

@@ -1,12 +1,12 @@
-import UserInformation from "./components/UserInformation/UserInformation";
-import { NewsFeed } from "./components/NewsFeed";
-import MediaQueries from "../../utilities/MediaQueries";
-import { AdsContainer } from "./components/AdsContainer";
 import { useSelector } from "react-redux";
-import { getReduxState } from "../../utilities/ReduxUtils";
+import MediaQueries from "../../utilities/MediaQueries";
+import { getLoggedUserState } from "../../utilities/ReduxUtils";
+import { AdsContainer } from "./components/AdsContainer";
+import { NewsFeed } from "./components/NewsFeed";
+import UserInformation from "./components/UserInformation/UserInformation";
 
 export default function Feed() {
-  const objLoggedUser = useSelector(getReduxState);
+  const objLoggedUser = useSelector(getLoggedUserState);
 
   return (
     <div className=" bg-color-main-background h-full flex-1 w-full flex justify-center pt-6">

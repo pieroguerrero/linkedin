@@ -7,4 +7,4 @@ import { User } from "../models/User";
  * @param {RootState} state
  * @returns {User}
  */
-export const getReduxState = (state) => state.loggedUser.value;
+export const getLoggedUserState = (state) => state.loggedUser.value;

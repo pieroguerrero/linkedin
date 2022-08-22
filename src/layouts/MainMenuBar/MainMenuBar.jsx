@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { getReduxState } from "../../utilities/ReduxUtils";
+import { getLoggedUserState } from "../../utilities/ReduxUtils";
 import { EmptyUserState } from "../../redux/states/logedUserSlice";
 import { Navigate } from "react-router-dom";
 import { DesktopNavBar } from "./components/DesktopNavBar/";
@@ -12,7 +12,7 @@ import MediaQueries from "../../utilities/MediaQueries";
  * @returns {JSX.Element}
  */
 export default function MainMenuBar() {
-  const objLoggedUser = useSelector(getReduxState);
+  const objLoggedUser = useSelector(getLoggedUserState);
 
   if (objLoggedUser === EmptyUserState) {
     return <Navigate to={"/"} replace={true} />;
