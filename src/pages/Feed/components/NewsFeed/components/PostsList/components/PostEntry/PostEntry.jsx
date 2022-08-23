@@ -37,9 +37,20 @@ export default function PostEntry({
     }
   }, []);
 
-  //TODO: add the buttons to interact socialy: LINK, COMMENT, SHARE, etc
-  //Give the final shape to the entry
+  let timeoutId = null;
 
+  const handleMouseEnter = () => {
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+    } else setShowLikeHoverPopUp(true);
+  };
+
+  const handleMouseLeave = () => {
+    timeoutId = setTimeout(() => {
+      setShowLikeHoverPopUp(false);
+      timeoutId = null;
+    }, 500);
+  };
   return (
     <div className=" bg-white h-fit rounded-lg border shadow-sm">
       <div className="flex px-1 justify-between items-start m-3">
@@ -126,18 +137,12 @@ export default function PostEntry({
         <InteractionCounter />
       ) : null}
 
-      <div className="flex items-center justify-center py-1 px-3">
+      <div className="flex items-center justify-center mt-1 py-1 px-3">
         <div className="relative flex-auto flex rounded">
           <button
             type="button"
-            onMouseEnter={() => {
-              setShowLikeHoverPopUp(true);
-            }}
-            onMouseLeave={() => {
-              setTimeout(() => {
-                setShowLikeHoverPopUp(false);
-              }, 500);
-            }}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
             className=" py-[10px] flex-1 px-2 hover:bg-[#00000014] rounded  max-w-[480px]"
           >
             <div className="flex gap-1 items-center justify-center">
@@ -160,7 +165,11 @@ export default function PostEntry({
             </div>
           </button>
           {showLikeHoverPopUp ? (
-            <LikeHoverPopUp objLoggedUser={objLoggedUser} />
+            <LikeHoverPopUp
+              objLoggedUser={objLoggedUser}
+              handleKeepOpen={handleMouseEnter}
+              handleClose={handleMouseLeave}
+            />
           ) : null}
         </div>
 
