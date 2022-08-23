@@ -62,7 +62,7 @@ const getNextBatch = async (strUserId, objStartKey = null) => {
     const arrQuerySnapDocs = await getBatch(
       CollectionNames.POSTS,
       objStartKey,
-      100,
+      5,
       [where("booActive", "==", true), orderBy("dtCreatedOn", "desc")]
     );
     if (arrQuerySnapDocs) {

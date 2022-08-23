@@ -13,15 +13,18 @@ import { PostList } from "./components/PostsList";
  * @returns {JSX.Element}
  */
 export default function NewsFeed({ objLoggedUser }) {
-  //TODO: Finish the infinite scroll
   /**
    * @type {Array<{objPost:Post,objProfile: Profile}>}
    */
   const arrInitialValue = [];
   const [arrPostsProfile, setArrPostsProfile] = useState(arrInitialValue);
 
-  // eslint-disable-next-line no-unused-vars
-  const [dtStartPoint, setDtStartPoint] = useState(null);
+  /**
+   * @type {Date}
+   */
+  // @ts-ignore
+  const dtInitialValue = null;
+  const [dtStartPoint, setDtStartPoint] = useState(dtInitialValue);
 
   useEffect(() => {
     getNextBatch(objLoggedUser.strUserId, dtStartPoint).then(
@@ -31,31 +34,60 @@ export default function NewsFeed({ objLoggedUser }) {
             (objPost) => objPost.strUserId
           );
 
-          getMainProfileAll(Array.from(new Set(arrUserOwnerIds))).then(
-            (arrProfilesResponse) => {
-              if (arrProfilesResponse) {
-                const arrPostProfile = arrPostsResponse.map((objPost) => {
-                  const arrProfiles = arrProfilesResponse.filter(
-                    (objProfile) => objProfile.strUserId === objPost.strUserId
-                  );
+          if (arrUserOwnerIds.length > 0) {
+            getMainProfileAll(Array.from(new Set(arrUserOwnerIds))).then(
+              (arrProfilesResponse) => {
+                if (arrProfilesResponse) {
+                  const arrPostProfile = arrPostsResponse.map((objPost) => {
+                    const arrProfiles = arrProfilesResponse.filter(
+                      (objProfile) => objProfile.strUserId === objPost.strUserId
+                    );
 
-                  if (arrProfiles.length === 1) {
-                    return { objPost, objProfile: arrProfiles[0] };
-                  }
+                    if (arrProfiles.length === 1) {
+                      return { objPost, objProfile: arrProfiles[0] };
+                    }
 
-                  throw new Error(
-                    "PostList.useEffect: Every Post must have a corresponding Profile object."
-                  );
-                });
+                    throw new Error(
+                      "PostList.useEffect: Every Post must have a corresponding Profile object."
+                    );
+                  });
 
-                setArrPostsProfile(arrPostProfile);
+                  setArrPostsProfile((prevState) => {
+                    const newState = [...prevState, ...arrPostProfile];
+                    return newState;
+                  });
+                }
               }
-            }
-          );
+            );
+          }
         }
       }
     );
   }, [dtStartPoint]);
+
+  useEffect(() => {
+    const onScroll = () => {
+      if (
+        window.innerHeight +
+          Math.max(
+            window.pageYOffset,
+            document.documentElement.scrollTop,
+            document.body.scrollTop
+          ) >
+        document.documentElement.offsetHeight - 10
+      ) {
+        if (arrPostsProfile.length > 0) {
+          setDtStartPoint(
+            arrPostsProfile[arrPostsProfile.length - 1].objPost.dtCreatedOn
+          );
+        }
+      }
+    };
+
+    window.addEventListener("scroll", onScroll);
+
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [arrPostsProfile]);
 
   /**
    *
