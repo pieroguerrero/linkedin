@@ -1,9 +1,15 @@
+import { lazy, Suspense } from "react";
 import { useSelector } from "react-redux";
 import MediaQueries from "../../utilities/MediaQueries";
 import { getLoggedUserState } from "../../utilities/ReduxUtils";
-import { AdsContainer } from "./components/AdsContainer";
+//import { AdsContainer } from "";
 import { NewsFeed } from "./components/NewsFeed";
 import UserInformation from "./components/UserInformation/UserInformation";
+const AdsContainer = lazy(() =>
+  import("./components/AdsContainer").then((mod) => ({
+    default: mod.AdsContainer,
+  }))
+);
 
 export default function Feed() {
   const objLoggedUser = useSelector(getLoggedUserState);
@@ -22,7 +28,9 @@ export default function Feed() {
 
         {MediaQueries.minWidth640px.matches ? (
           <aside>
-            <AdsContainer objLoggedUser={objLoggedUser} />
+            <Suspense>
+              <AdsContainer objLoggedUser={objLoggedUser} />
+            </Suspense>
           </aside>
         ) : null}
       </div>

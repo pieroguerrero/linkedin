@@ -86,7 +86,7 @@ export function DesktopNavBar({ objLoggedUser }) {
         <button
           onClick={handleNotAvailableClick}
           type="button"
-          className="w-full max-w-[100px] text-[#915907] text-[13px] leading-[18px] font-normal hover:underline hover:text-[#5d3b09]"
+          className="w-full max-w-[100px] text-[#915907] text-[13px] leading-[18px] font-normal hover:text-[#5d3b09] underline"
         >
           Try Premium for free
         </button>

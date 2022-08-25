@@ -86,6 +86,7 @@ export default function UserMenu({ objLoggedUser, handleCloseEvent }) {
         </div>
         <div className="text-color-text-low-emphasis border-solid border-t  mt-[7px] flex items-center h-full">
           <LinkOption
+            //TODO:finish the Sign Out process
             strText="Sign Out"
             handleClick={handleNotAvailableClick}
           />
