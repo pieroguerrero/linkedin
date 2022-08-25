@@ -4,6 +4,7 @@ import { Post, Profile, User } from "../../../../models";
 import { getNextBatch } from "../../../../services/servicePost";
 import { getMainProfileAll } from "../../../../services/serviceProfile";
 import { AddPost } from "./components/AddPost";
+import ListFilter from "./components/ListFilter/ListFilter";
 import { PostList } from "./components/PostsList";
 
 /**
@@ -29,7 +30,7 @@ export default function NewsFeed({ objLoggedUser }) {
   useEffect(() => {
     getNextBatch(objLoggedUser.strUserId, dtStartPoint).then(
       (arrPostsResponse) => {
-        if (arrPostsResponse) {
+        if (arrPostsResponse && arrPostsResponse.length > 0) {
           const arrUserOwnerIds = arrPostsResponse.map(
             (objPost) => objPost.strUserId
           );
@@ -37,7 +38,7 @@ export default function NewsFeed({ objLoggedUser }) {
           if (arrUserOwnerIds.length > 0) {
             getMainProfileAll(Array.from(new Set(arrUserOwnerIds))).then(
               (arrProfilesResponse) => {
-                if (arrProfilesResponse) {
+                if (arrProfilesResponse && arrProfilesResponse.length > 0) {
                   const arrPostProfile = arrPostsResponse.map((objPost) => {
                     const arrProfiles = arrProfilesResponse.filter(
                       (objProfile) => objProfile.strUserId === objPost.strUserId
@@ -52,10 +53,12 @@ export default function NewsFeed({ objLoggedUser }) {
                     );
                   });
 
-                  setArrPostsProfile((prevState) => {
-                    const newState = [...prevState, ...arrPostProfile];
-                    return newState;
-                  });
+                  if (arrPostProfile.length > 0) {
+                    setArrPostsProfile((prevState) => {
+                      const newState = [...prevState, ...arrPostProfile];
+                      return newState;
+                    });
+                  }
                 }
               }
             );
@@ -104,8 +107,8 @@ export default function NewsFeed({ objLoggedUser }) {
   return (
     <div className=" flex flex-col">
       <AddPost objLoggedUser={objLoggedUser} addPostToFeed={addPostToFeed} />
-      <div className="w-[540px] flex flex-col">
-        <div>{"filter"}</div>
+      <div className="w-[545px] flex flex-col">
+        <ListFilter />
         <PostList
           objLoggedUser={objLoggedUser}
           arrPostsProfile={arrPostsProfile}
