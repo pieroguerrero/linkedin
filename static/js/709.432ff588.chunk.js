@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunklinkedin=self.webpackChunklinkedin||[]).push([[709],{1709:function(e,n,i){e.exports=i.p+"static/media/funny.43ea98d23523d0b79bab.svg"}}]);

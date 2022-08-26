@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunklinkedin=self.webpackChunklinkedin||[]).push([[982],{7982:function(e,i,n){e.exports=n.p+"static/media/like.6d22e5b30b5cd999db4d.svg"}}]);
