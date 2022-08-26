@@ -24,10 +24,7 @@ export function DesktopNavBar({ objLoggedUser }) {
         strDuration="duration-700"
         className={"flex gap-1 justify-center items-center w-full max-w-6xl"}
       >
-        <Link
-          to={NavigationPaths.BASE + "/" + NavigationPaths.FEED}
-          className="text-color-blue"
-        >
+        <Link to={"/" + NavigationPaths.FEED} className="text-color-blue">
           <svg
             className="w-[41px] h-auto"
             xmlns="http://www.w3.org/2000/svg"

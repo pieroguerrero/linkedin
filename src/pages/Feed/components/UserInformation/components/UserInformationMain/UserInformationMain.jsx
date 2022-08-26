@@ -11,7 +11,7 @@ import { Constants } from "../../../../../../utilities";
  */
 export default function UserInformationMain({ objLoggedUser }) {
   return (
-    <div className=" overflow-hidden flex flex-col  w-[225px] h-fit rounded-lg bg-white shadow-sm p-3 pb-0">
+    <div className=" overflow-hidden flex flex-col  w-[230px] h-fit rounded-lg bg-white shadow-sm p-3 pb-0">
       <FadeInAnimationDiv
         strDuration="duration-[4000ms]"
         className="relative h-[57px] flex justify-center m-[-12px] mb-0 bg-center bg-cover"
@@ -30,7 +30,7 @@ export default function UserInformationMain({ objLoggedUser }) {
         </div>
       </FadeInAnimationDiv>
       <div className="flex flex-col items-center mt-[54px] mb-4">
-        <a className=" hover:underline cursor-pointer  text-center text-color-text-darker uppercase font-bold text-base">
+        <a className=" hover:underline cursor-pointer  text-center text-color-text-darker uppercase font-bold text-[17px] leading-6">
           {objLoggedUser.strFullName}
         </a>
         <p className="text-[13px] text-color-text font-medium text-center mt-[2px]">

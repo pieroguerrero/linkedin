@@ -1,10 +1,13 @@
+import { useDispatch } from "react-redux/es/hooks/useDispatch";
+import { useNavigate } from "react-router-dom";
+import UserCard from "../../../../../../components/UserCard/UserCard";
 // eslint-disable-next-line no-unused-vars
 import { User } from "../../../../../../models/User";
-import UserCard from "../../../../../../components/UserCard/UserCard";
+import { clearLogedUser } from "../../../../../../redux";
+import { googleSignOutUser } from "../../../../../../services";
 import { showNotAvailableToast } from "../../../../../../utilities";
 import { GroupTitle } from "./components/GroupTitle";
 import { LinkOption } from "./components/LinkOption";
-import { useLayoutEffect, useRef } from "react";
 
 /**
  *
@@ -14,21 +17,25 @@ import { useLayoutEffect, useRef } from "react";
  * @returns {JSX.Element}
  */
 export default function UserMenu({ objLoggedUser, handleCloseEvent }) {
-  const refDiv = useRef(null);
-  useLayoutEffect(() => {
-    if (refDiv && refDiv.current) {
-      // @ts-ignore
-      refDiv.current.focus();
-    }
-  });
+  const dispatch = useDispatch();
+  const objNavigate = useNavigate();
 
   const handleNotAvailableClick = () => {
     showNotAvailableToast();
   };
+
+  const handleLogOut = () => {
+    googleSignOutUser()
+      .then(() => {
+        dispatch(clearLogedUser);
+        objNavigate("/");
+      })
+      .catch((error) => console.log(error));
+  };
+
   return (
     <div
       tabIndex={-1}
-      ref={refDiv}
       className="absolute w-[264px] h-[400px] rounded-lg rounded-tr-none shadow-lg bg-white top-[60px] right-0 z-10 "
       onBlur={handleCloseEvent}
     >
@@ -88,7 +95,7 @@ export default function UserMenu({ objLoggedUser, handleCloseEvent }) {
           <LinkOption
             //TODO:finish the Sign Out process
             strText="Sign Out"
-            handleClick={handleNotAvailableClick}
+            handleClick={handleLogOut}
           />
         </div>
       </div>

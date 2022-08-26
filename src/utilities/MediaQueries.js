@@ -1,10 +1,8 @@
-import { showResponsiveWarning } from "./ToastUtil";
-
 const MediaQueries = (() => {
   const minWidth640px = window.matchMedia("(min-width: 640px)");
 
   minWidth640px.onchange = () => {
-    showResponsiveWarning();
+    window.location.reload();
   };
 
   return { minWidth640px };

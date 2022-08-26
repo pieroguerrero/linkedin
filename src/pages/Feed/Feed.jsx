@@ -15,7 +15,7 @@ export default function Feed() {
   const objLoggedUser = useSelector(getLoggedUserState);
 
   return (
-    <div className=" bg-color-main-background h-full flex-1 w-full flex justify-center pt-6">
+    <div className=" bg-color-main-background h-full flex-1 w-full flex justify-center pt-[6px] sm:pt-6">
       <div className="flex gap-6 justify-center w-full max-w-6xl">
         {MediaQueries.minWidth640px.matches ? (
           <div>

@@ -22,8 +22,7 @@ export default function MobileNavBarBottom({ objLoggedUser }) {
   };
 
   return (
-    //TODO: Create a new bottom bar with the same bottoms but adding the 'Add Post' one
-    <nav className="sm:hidden flex justify-center h-[46px] pt-[2px] bg-white">
+    <footer className=" fixed left-0 bottom-0 border sm:hidden flex justify-center h-[46px] pt-[2px] bg-white">
       <div className="flex justify-center w-full">
         <ButtonImageText
           strTitle="Home"
@@ -106,6 +105,6 @@ export default function MobileNavBarBottom({ objLoggedUser }) {
           </svg>
         </ButtonImageText>
       </div>
-    </nav>
+    </footer>
   );
 }

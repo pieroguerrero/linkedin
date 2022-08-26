@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Post, Profile, User } from "../../../../models";
 import { getNextBatch } from "../../../../services/servicePost";
 import { getMainProfileAll } from "../../../../services/serviceProfile";
+import { MediaQueries } from "../../../../utilities";
 import { AddPost } from "./components/AddPost";
 import ListFilter from "./components/ListFilter/ListFilter";
 import { PostList } from "./components/PostsList";
@@ -106,9 +107,11 @@ export default function NewsFeed({ objLoggedUser }) {
 
   return (
     <div className=" flex flex-col">
-      <AddPost objLoggedUser={objLoggedUser} addPostToFeed={addPostToFeed} />
-      <div className="w-[545px] flex flex-col">
-        <ListFilter />
+      {MediaQueries.minWidth640px.matches ? (
+        <AddPost objLoggedUser={objLoggedUser} addPostToFeed={addPostToFeed} />
+      ) : null}
+      <div className="sm:w-[545px] flex flex-col">
+        {MediaQueries.minWidth640px.matches ? <ListFilter /> : null}
         <PostList
           objLoggedUser={objLoggedUser}
           arrPostsProfile={arrPostsProfile}

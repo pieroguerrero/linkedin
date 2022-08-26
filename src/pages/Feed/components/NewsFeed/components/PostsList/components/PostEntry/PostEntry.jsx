@@ -1,7 +1,10 @@
 // eslint-disable-next-line no-unused-vars
 import { Post, User, Profile } from "../../../../../../../../models";
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
-import { showNotAvailableToast } from "../../../../../../../../utilities";
+import {
+  MediaQueries,
+  showNotAvailableToast,
+} from "../../../../../../../../utilities";
 import { useLayoutEffect, useRef } from "react";
 import InteractionCounter from "./components/InteractionCounter";
 import CommentsList from "./components/CommentsList/CommentsList";
@@ -52,7 +55,7 @@ export default function PostEntry({
     }, 500);
   };
   return (
-    <div className=" bg-white h-fit rounded-lg border shadow-sm">
+    <div className=" bg-white h-fit sm:rounded-lg border shadow-sm">
       <div className="flex px-1 justify-between items-start m-3">
         <button
           type="button"
@@ -178,7 +181,12 @@ export default function PostEntry({
           handleClick={showNotAvailableToast}
         />
         <PostActionButton strType="Share" handleClick={showNotAvailableToast} />
-        <PostActionButton strType="Send" handleClick={showNotAvailableToast} />
+        {MediaQueries.minWidth640px.matches ? (
+          <PostActionButton
+            strType="Send"
+            handleClick={showNotAvailableToast}
+          />
+        ) : null}
       </div>
       {showComments ? <CommentsList /> : null}
     </div>

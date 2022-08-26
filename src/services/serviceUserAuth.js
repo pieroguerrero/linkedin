@@ -27,11 +27,16 @@ const googleSignInUser = async () => {
   }
 };
 
+/**
+ * If resolves means that the user was successfully logged out. Otherwhise, there was an error.
+ * @returns {Promise<void>}
+ */
 const googleSignOutUser = () => {
-  signOut(appAuthProvider).then(() => {
-    //todo something to reaload the page and show default values
-    console.log("googleSignOutUser out!!!");
-  });
+  // signOut(appAuthProvider).then(() => {
+  //   //todo something to reaload the page and show default values
+  //   console.log("googleSignOutUser out!!!");
+  // });
+  return signOut(appAuthProvider);
 };
 
 /**
