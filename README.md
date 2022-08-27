@@ -4,6 +4,8 @@
 - The wireframes that reflec the current version were developed in Figma and can be found [here](https://www.figma.com/proto/MF42A0I66iqogQB7eyHW5F/LinkedIn-clone?node-id=2689%3A6000&scaling=min-zoom&page-id=2689%3A5984&starting-point-node-id=2689%3A6000).
 - Standards Linkedin [Color palette](https://brand.linkedin.com/content/brand/global/en_us/index/visual-identity/color-palettes) and [Typography](https://brand.linkedin.com/content/brand/global/en_us/index/visual-identity/typography) are used in this project.
 
-- React, Custom CRA template, react-router, react-redux, TailwindCSS, JSDocs, Lazy loading of pictures and components with the IntersectionObserver API, CLEAN project achitecture, Firestore, Firestorage,
+## Tools and other technical considerations:
+
+- ReactJS, Custom CRA template, react-router, react-redux, TailwindCSS, JSDocs, Lazy loading of pictures and components with the IntersectionObserver API, CLEAN project achitecture, Firestore, Firestorage,
 - Running the project always in 3G and using dynamic imports to load heavy libraries such as Firestore and Firestorage
 - Controlling the performance by loading only the components that are required according the screen size.
