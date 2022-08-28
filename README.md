@@ -10,3 +10,5 @@
 - The backend is implemented in Firebase. Firestore as data base, Firenase Auth for authentication and Firestorage as file repository.
 - Running the project always in 3G and using dynamic imports to load heavy libraries such as Firestore and Firestorage
 - Controlling the performance by loading only the components that are required according the screen size.
+
+### Feel free to copy or enhance this project.
