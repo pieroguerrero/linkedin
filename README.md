@@ -67,7 +67,7 @@ By clicking on the Feature name you will be redirected to the corresponsing User
 
 | Landing Page | Landing Page responsive | News Feed |
 | ------------ | -------------- | ------------- |
-| <img src="https://user-images.githubusercontent.com/26049605/188296264-0ff11778-19ac-4113-aeb5-43fe86c0ab55.png" width="350px" height="auto" alt="Landing Page" title="Click to enlarge">   | <img src="https://user-images.githubusercontent.com/26049605/188296552-b2f16ddf-c479-47db-8dc8-824a5e115047.png" width="200px" height="auto" alt="News Feed" title="Click to enlarge">     | <img src="https://user-images.githubusercontent.com/26049605/188296306-924006da-921c-44e9-8b47-3fbe7d902fc9.png" width="350px" height="auto" alt="News Feed" title="Click to enlarge">    |
+| <img src="https://user-images.githubusercontent.com/26049605/188337360-4a5d9227-cf9a-4019-8344-49a084b8c6b9.png" width="350px" height="auto" alt="Landing Page" title="Click to enlarge">   | <img src="https://user-images.githubusercontent.com/26049605/188337420-29bcf086-7e66-4166-8dbd-06e2a4997c2a.png" width="200px" height="auto" alt="News Feed" title="Click to enlarge">     | <img src="https://user-images.githubusercontent.com/26049605/188337385-e20d5457-3974-4019-b3e5-71681ef1f566.png" width="350px" height="auto" alt="News Feed" title="Click to enlarge">    |
 
 ## Setup
 Clone this project by doing:
