@@ -5,7 +5,7 @@
 
 ## Table of Contents
 * [General Info](#general-information)
-* [Technologies and Techniques used](#technologies-and techniques-used)
+* [Technologies and Techniques used](#technologies-and-techniques-used)
 * [Features](#features)
 * [Screenshots](#screenshots)
 * [Setup](#setup)
@@ -30,6 +30,7 @@
 - The Entity Relationship Diagram (ERD) can be found [here](https://drive.google.com/file/d/1NhAYBe7IRGe9uUDRX6zaC4HNHDh6x8wA/view?usp=sharing).
 - The internal project architecture was implemented following the concepts of the [CLEAN Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html).
 - Overal code documentation was done leveraging [JSDocs](https://jsdoc.app/).
+
 ### Front-end:
 - ReactJS with a [customized CRA template](https://github.com/pieroguerrero/cra-template).
 - Routing with [react-router v6](https://reactrouter.com/en/main).
@@ -37,11 +38,13 @@
 - CSS design with [Tailwind CSS](https://tailwindcss.com/). 
 - Code Splitting was implemented to reduce loading wating times. This was achieved using [Dynamic Import API](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import) and [React Lazy loading components](https://reactjs.org/docs/code-splitting.html#reactlazy).
 - The web app is 100% responsive.
+
 ### Back-end:
 - Back-end was implemented in [Firebase](https://firebase.google.com/). Dynamic imports were used in this case due to the heavy weigth of the Google's Firebase libraries.
 - Database implemented in Firestore.
 - File sorage is on Firestorage.
 - The authentication is possible with Google Accounts and also Anonymously, so the users can interact easily with the project. Firebase Auth was used for this pupose.
+
 ### Testing:
 - Unit testing was done.
 - Test coverage is 45% and is increasing using Jest and [react-testing-library](https://testing-library.com/docs/react-testing-library/intro/) is being used.
@@ -50,63 +53,43 @@
 
 <img src="https://user-images.githubusercontent.com/26049605/188294816-c62b845f-bd5d-4ff5-8512-1e54f1bbac13.png" width="350px" height="auto" alt="Click to enlarge" title="Click to enlarge">
 
-
-
-
 ## Features
-List the ready features here:
-- Awesome feature 1
-- Awesome feature 2
-- Awesome feature 3
+By clicking on the Feature name you will be redirected to the corresponsing User Story Map development in order to plan the Work to be done on each Feature.
+- [Sign-up with Google](https://www.figma.com/proto/MF42A0I66iqogQB7eyHW5F/LinkedIn-clone?node-id=2722%3A3621&scaling=min-zoom&page-id=2722%3A3620) ✔
+- [Sign-in with Google and Anonymously](https://www.figma.com/proto/MF42A0I66iqogQB7eyHW5F/LinkedIn-clone?node-id=2722%3A3621&scaling=min-zoom&page-id=2722%3A3620) ✔
+- [News Feed navigation](https://www.figma.com/proto/MF42A0I66iqogQB7eyHW5F/LinkedIn-clone?node-id=2800%3A3938&scaling=min-zoom&page-id=2800%3A3937) ✔
+- [Add a Post](https://www.figma.com/proto/MF42A0I66iqogQB7eyHW5F/LinkedIn-clone?node-id=2796%3A4366&scaling=min-zoom&page-id=2796%3A4365) ✔
+- Sign-up with User and Password 🔜
+- React/Comment to a post 🔜
+- [Create Profile](https://www.figma.com/proto/MF42A0I66iqogQB7eyHW5F/LinkedIn-clone?node-id=2789%3A3738&scaling=min-zoom&page-id=2789%3A3737) 🔜
+- [Edit Profile](https://www.figma.com/proto/MF42A0I66iqogQB7eyHW5F/LinkedIn-clone?node-id=2794%3A3963&scaling=min-zoom&page-id=2794%3A3962) 🔜
+- [Follow and Add new Connections](https://www.figma.com/proto/MF42A0I66iqogQB7eyHW5F/LinkedIn-clone?node-id=2802%3A4856&scaling=min-zoom&page-id=2802%3A4855) 🔜
+- [View My Profile summary/statistics information](https://www.figma.com/proto/MF42A0I66iqogQB7eyHW5F/LinkedIn-clone?node-id=2800%3A4247&scaling=min-zoom&page-id=2800%3A4246) 🔜
 
 
 ## Screenshots
-![Example screenshot](./img/screenshot.png)
-<!-- If you have screenshots you'd like to share, include them here. -->
 
+| Landing Page | Landing Page responsive | News Feed |
+| ------------ | -------------- | ------------- |
+| <img src="https://user-images.githubusercontent.com/26049605/188296264-0ff11778-19ac-4113-aeb5-43fe86c0ab55.png" width="350px" height="auto" alt="Landing Page" title="Click to enlarge">   | <img src="https://user-images.githubusercontent.com/26049605/188296552-b2f16ddf-c479-47db-8dc8-824a5e115047.png" width="200px" height="auto" alt="News Feed" title="Click to enlarge">     | <img src="https://user-images.githubusercontent.com/26049605/188296306-924006da-921c-44e9-8b47-3fbe7d902fc9.png" width="350px" height="auto" alt="News Feed" title="Click to enlarge">    |
 
 ## Setup
-What are the project requirements/dependencies? Where are they listed? A requirements.txt or a Pipfile.lock file perhaps? Where is it located?
-
-Proceed to describe how to install / setup one's local environment / get started with the project.
-
-
-## Usage
-How does one go about using it?
-Provide various use cases and code examples here.
-
-`write-your-code-here`
-
+Clone this project by doing:
+```
+$ git clone https://github.com/pieroguerrero/linkedin.git
+```
+Then go to the folder you cloned the code and execure:
+```
+$ npm install
+```
+**WARNING:** If you are going to use other libraries to achieve other purposes be carefull and remove the caret (^) prefix that the dependency versions have.
 
 ## Project Status
-Project is: _in progress_ / _complete_ / _no longer being worked on_. If you are no longer working on it, provide reasons why.
+Project is: _in progress_
+I am constantly adding some code in order to test new techologies or concepts.
 
 
 ## Room for Improvement
-Include areas you believe need improvement / could be improved. Also add TODOs for future development.
-
-Room for improvement:
-- Improvement to be done 1
-- Improvement to be done 2
-
-To do:
-- Feature to be added 1
-- Feature to be added 2
-
-
-## Acknowledgements
-Give credit here.
-- This project was inspired by...
-- This project was based on [this tutorial](https://www.example.com).
-- Many thanks to...
-
-
-## Contact
-Created by [@flynerdpl](https://www.flynerd.pl/) - feel free to contact me!
-
-
-<!-- Optional -->
-<!-- ## License -->
-<!-- This project is open source and available under the [... License](). -->
-
-<!-- You don't have to include all sections - just the one's relevant to your project -->
+There are always room for improvement, in this project so far the thinkgs that can be improved are:
+- More Unit testing coverage.
+- Some parts are still pending to analyze how to apply code-splitting: New Posts listing for example.
