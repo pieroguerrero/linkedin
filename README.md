@@ -14,7 +14,7 @@
 
 
 ## General Information
-- The objective of the project is (1) to be a placeholder for general React components I am using in other projects and (2) to be a playground for some technology, tools and thechniques I am planning to use.
+- The objectives of the project are (1) to be a placeholder for general React components I am using in other projects and (2) to be a playground for some technology, tools and thechniques I am planning to use.
 - This project was planned using the Story Mapping technique.
 
 
