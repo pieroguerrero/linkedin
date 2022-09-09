@@ -26,6 +26,7 @@
 - The Entity Relationship Diagram (ERD) can be found [here](https://drive.google.com/file/d/1NhAYBe7IRGe9uUDRX6zaC4HNHDh6x8wA/view?usp=sharing).
 - The internal project architecture was implemented following the concepts of the [CLEAN Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html).
 - Overal code documentation was done leveraging [JSDocs](https://jsdoc.app/).
+- GitHub Actions was used to deploy the web.
 
 ### Front-end:
 - ReactJS with a [customized CRA template](https://github.com/pieroguerrero/cra-template).
