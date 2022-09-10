@@ -1,6 +1,6 @@
 
 # LinkedIn clone
-> Fully responsive LinkedIn clone.
+> Fully responsive LinkedIn clone MVP.
 > Live demo [_here_](https://pieroguerrero.github.io/linkedin/).
 
 ## Table of Contents
