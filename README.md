@@ -1,7 +1,7 @@
 
 # LinkedIn clone
 > Fully responsive LinkedIn clone MVP.
-> Live demo [_here_]().
+> Live demo [_here_](https://lkdn2.pages.dev/linkedin/).
 
 ## Table of Contents
 * [General Info](#general-information)
